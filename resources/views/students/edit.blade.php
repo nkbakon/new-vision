@@ -5,233 +5,213 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
                 <a href="{{ route('students.index') }}" title="back" class="inline-flex items-center px-4 py-2 bg-gray-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-900 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition ease-in-out duration-150" ><i class="fa-solid fa-arrow-left-long"></i></a><br><br>
-                <h5 class="font-bold text-center text-gray-900 text-xl">Edit Student</h5><br>                 
+                <h5 class="font-bold text-center text-gray-900 text-xl">PRE-DEMOGRAPHIC - INTAKE DATA</h5><br>                 
                 <form action="{{ route('students.update', $student) }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="">
                         <div>
                             <div>
-                                <label for="name">Full Name</label><br>
+                                <label for="name">Student's Full Name</label><br>
                                 <input type="text" name="name" value="{{ $student->name }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="full name" required>
                             </div>
                             @error('name') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br> 
                             <div>
-                                <label for="email">Email</label><br>
-                                <input type="text" name="email" id="email" value="{{ $student->email }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="email" required>
-                            </div>
-                            <p id="danger_alert1" class="text-sm text-red-500 mb-2" style="display:none;"></p>
-                            @error('email') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
-                            <div>
-                                <label for="contact">Contact Number</label><br>
-                                <input type="number" name="contact" id="contact" value="{{ $student->contact }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="contact number" required>
-                            </div>
-                            <p id="danger_alert2" class="text-sm text-red-500 mb-2" style="display:none;"></p>
-                            @error('contact') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br>                                                 
-                        </div>
-                        <div class="">
-                            <div>
-                                <label for="areas" class="mb-4">In what areas would you like help from staff? (check all that apply)</label><br>
-                                @php 
-                                    $areas = json_decode($student->areas);
-                                    $other_value = '';
-
-                                    if (is_array($areas)) {
-                                        $other_index = array_search('Other', $areas);
-                                        if ($other_index !== false && isset($areas[$other_index + 1])) {
-                                            $other_value = $areas[$other_index + 1];
-                                        }
-                                    }
-                                @endphp
-                                <div class="flex flex-wrap">
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="grades" type="checkbox" name="areas[]" value="Grades" {{ in_array('Grades', $areas ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="grades" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Grades</label>
-                                    </div>
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="after_school" type="checkbox" name="areas[]" value="After-school or Summer Employment" {{ in_array('After-school or Summer Employment', $areas ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="after_school" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">After-school or Summer Employment</label>
-                                    </div>
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="attendance" type="checkbox" name="areas[]" value="Attendance" {{ in_array('Attendance', $areas ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="attendance" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Attendance</label>
-                                    </div>
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="behavior" type="checkbox" name="areas[]" value="Behavior in School" {{ in_array('Behavior in School', $areas ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="behavior" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Behavior in School</label>
-                                    </div>
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="relationships_w_o" type="checkbox" name="areas[]" value="Relationships with Others" {{ in_array('Relationships with Others', $areas ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="relationships_w_o" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Relationships with Others</label>
-                                    </div>
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="other" type="checkbox" name="areas[]" value="Other" {{ in_array('Other', $areas ?? []) ? 'checked' : '' }} onchange="toggleOtherInput1(this)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="other" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Other</label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="areas">Specify other comments</label><br>
-                                    <input type="text" name="areas[]" id="other-input1" disabled value="{{ $other_value }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="specify other comments">
-                                </div>
-                                <br>
-                            </div>
-                            <div>
-                                <label for="relationships" class="mb-4">Specify relationships that you would especially like help with:</label><br>
-                                @php 
-                                    $relationships = json_decode($student->relationships);
-                                    $other_value1 = '';
-
-                                    if (is_array($relationships)) {
-                                        $other_index1 = array_search('Other', $relationships);
-                                        if ($other_index1 !== false && isset($relationships[$other_index1 + 1])) {
-                                            $other_value1 = $relationships[$other_index1 + 1];
-                                        }
-                                    }
-                                @endphp
-                                <div class="flex flex-wrap">
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="friends" type="checkbox" name="relationships[]" value="Friends" {{ in_array('Friends', $relationships ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="friends" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Friends</label>
-                                    </div>
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="other_youth" type="checkbox" name="relationships[]" value="Other youth who are not friends" {{ in_array('Other youth who are not friends', $relationships ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="other_youth" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Other youth who are not friends</label>
-                                    </div>
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="teachers" type="checkbox" name="relationships[]" value="Teachers/School staff" {{ in_array('Teachers/School staff', $relationships ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="teachers" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Teachers/School staff</label>
-                                    </div>
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="parents" type="checkbox" name="relationships[]" value="Parents" {{ in_array('Parents', $relationships ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="parents" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Parents</label>
-                                    </div>
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="sisters_and_brothers" type="checkbox" name="relationships[]" value="Sisters and Brothers" {{ in_array('Sisters and Brothers', $relationships ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="sisters_and_brothers" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sisters and Brothers</label>
-                                    </div>
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="girlfriend" type="checkbox" name="relationships[]" value="Girlfriend/Boyfriend" {{ in_array('Girlfriend/Boyfriend', $relationships ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="girlfriend" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Girlfriend/Boyfriend</label>
-                                    </div>
-                                    <div class="w-1/3 p-2 flex items-center">
-                                        <input id="other1" type="checkbox" name="relationships[]" value="Other" onchange="toggleOtherInput(this)" {{ in_array('Other', $relationships ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="other" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Other</label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="relationships">Specify other person/people</label><br>
-                                    <input type="text" name="relationships[]" id="other-input" disabled value="{{ $other_value1 }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="specify other person/people">
-                                </div>
-                                <br>
-                            </div>
-                            <div>
-                                <label for="cooperative" class="mb-4">Please rate yourself on the following as <strong>strongly agree/ agree /no opinion/disagree/strongly disagree</strong>:  (If not applicable, leave blank)</label><br>
-                                <div class="flex flex-wrap text-sm">
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="cooperative">I am cooperative with teachers</label><br>
-                                        <input type="text" name="cooperative" value="{{ $student->cooperative }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i am cooperative with teachers">
-                                    </div>
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="grades_fine">My grades are fine</label><br>
-                                        <input type="text" name="grades_fine" value="{{ $student->grades_fine }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="my grades are fine">
-                                    </div>
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="school_attitude">I have a positive attitude about school</label><br>
-                                        <input type="text" name="school_attitude" value="{{ $student->school_attitude }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i have a positive attitude about school">
-                                    </div>
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="interested_in_education">I am interested in education</label><br>
-                                        <input type="text" name="interested_in_education" value="{{ $student->interested_in_education }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i am interested in education">
-                                    </div>
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="work_well_with_students">I work well with other students</label><br>
-                                        <input type="text" name="work_well_with_students" value="{{ $student->work_well_with_students }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i work well with other students">
-                                    </div>
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="satisfied_with_friends">I am satisfied with my friends</label><br>
-                                        <input type="text" name="satisfied_with_friends" value="{{ $student->satisfied_with_friends }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i am satisfied with my friends">
-                                    </div>
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="do_homework">I do my homework regularly</label><br>
-                                        <input type="text" name="do_homework" value="{{ $student->do_homework }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i do my homework regularly">
-                                    </div>
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="life_attitude">I have positive attitude about life</label><br>
-                                        <input type="text" name="life_attitude" value="{{ $student->life_attitude }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i have positive attitude about life">
-                                    </div>
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="dont_hang_street">I do not hang out in the streets often</label><br>
-                                        <input type="text" name="dont_hang_street" value="{{ $student->dont_hang_street }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i do not hang out in the streets often">
-                                    </div>
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="cooperative_with_parent">I am cooperative with my parent(s)</label><br>
-                                        <input type="text" name="cooperative_with_parent" value="{{ $student->cooperative_with_parent }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i am cooperative with my parent(s)">
-                                    </div>
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="dont_get_trouble">I do not get in trouble often</label><br>
-                                        <input type="text" name="dont_get_trouble" value="{{ $student->dont_get_trouble }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i do not get in trouble often">
-                                    </div>
-                                    <div class="w-1/3 p-2 items-center">
-                                        <label for="getting_job">I am interested in getting a good job someday</label><br>
-                                        <input type="text" name="getting_job" value="{{ $student->getting_job }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i am interested in getting a good job someday">
-                                    </div>
-                                </div>
-                                <br>
-                            </div>  
-                            <div>
-                                <label for="have_you_stopped"><strong>In the last school year</strong>, have you been stopped or questioned by police or juvenile officers for something they thought you did wrong?</label><br>
-                                <select name="have_you_stopped" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
-                                    <option value="" selected disabled>Select from here</option>
-                                    <option value="1" @if($student->have_you_stopped === 1) selected @endif>Yes</option>
-                                    <option value="2" @if($student->have_you_stopped === 2) selected @endif>No</option>
-                                </select> 
-                            </div>
-                            @error('have_you_stopped') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br>
-                            <div>
-                                <label for="stop_fair"><strong>In the school year</strong>, if you were stopped or questioned, do you think it was mostly fair?</label><br>
-                                <select name="stop_fair" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
-                                    <option value="" selected disabled>Select from here</option>
-                                    <option value="1" @if($student->stop_fair === 1) selected @endif>Yes</option>
-                                    <option value="2" @if($student->stop_fair === 2) selected @endif>No</option>
-                                </select> 
-                            </div>
-                            @error('stop_fair') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
-                            <div>
-                                <label for="happend_result">If you were stopped or questioned <strong>in the last school year</strong>, what was the most serious thing that ever happened as a result?</label><br>
-                                <select name="happend_result" id="happend_result" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required onchange="toggleRequired()">
-                                    <option value="" selected disabled>Select from here</option>
-                                    <option value="1" @if($student->happend_result === 1) selected @endif>Let go right away</option>
-                                    <option value="2" @if($student->happend_result === 2) selected @endif>Given a ticket or warning</option>
-                                    <option value="3" @if($student->happend_result === 3) selected @endif>Taken to police station and then released</option>
-                                    <option value="4" @if($student->happend_result === 4) selected @endif>Required to go to court</option>
-                                    <option value="5" @if($student->happend_result === 5) selected @endif>Sent to a detention facility</option>
-                                    <option value="6" @if($student->happend_result === 6) selected @endif>Sent to jail</option>
-                                    <option value="7" @if($student->happend_result === 7) selected @endif>Sent to prison</option>
-                                    <option value="8" @if($student->happend_result === 8) selected @endif>Other</option>
-                                </select> 
-                            </div>
-                            @error('happend_result') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <div id="happend_other" style="display:none">
-                                <label for="happend_result_other">Specify other result</label><br>
-                                <input type="text" name="happend_result_other" id="happend_result_other" value="{{ $student->happend_result_other }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="specify other result">
-                            </div>
-                            <br> 
-                            <div>
-                                <label for="school">School (Applicable to school/program)</label><br>
-                                <input type="text" name="school" value="{{ $student->school }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="school (applicable to school/program)" required>
+                                <label for="school">School</label><br>
+                                <input type="text" name="school" value="{{ $student->school }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="school" required>
                             </div>
                             @error('school') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
-                            @if($student->signature != null)
+                            <div>
+                                <label for="address">Address</label><br>
+                                <input type="text" name="address" value="{{ $student->address }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="address" required>
+                            </div>
+                            @error('address') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="city">City</label><br>
+                                <input type="text" name="city" value="{{ $student->city }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="city" required>
+                            </div>
+                            @error('city') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="state">State</label><br>
+                                <input type="text" name="state" value="{{ $student->state }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="state" required>
+                            </div>
+                            @error('state') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="zip">Zip</label><br>
+                                <input type="text" name="zip" value="{{ $student->zip }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="zip" required>
+                            </div>
+                            @error('zip') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="home_phone">Home Phone</label><br>
+                                <input type="number" name="home_phone" value="{{ $student->home_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="home phone" required>
+                            </div>
+                            @error('home_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="work_phone">Work Phone</label><br>
+                                <input type="number" name="work_phone" value="{{ $student->work_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="work phone">
+                            </div>
+                            @error('work_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="cell_phone">Cell Phone</label><br>
+                                <input type="number" name="cell_phone" value="{{ $student->cell_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="cell phone">
+                            </div>
+                            @error('cell_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="gender">Gender</label><br>
+                                <input type="text" name="gender" value="{{ $student->gender }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="gender" required>
+                            </div>
+                            @error('gender') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="ethnicity">Ethnicity</label><br>
+                                <input type="text" name="ethnicity" value="{{ $student->ethnicity }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="ethnicity" required>
+                            </div>
+                            @error('ethnicity') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="age">Age</label><br>
+                                <input type="text" name="age" value="{{ $student->age }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="age" required>
+                            </div>
+                            @error('age') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="dob">Date of Birth</label><br>
+                                <input type="date" name="dob" value="{{ $student->dob }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="dob" required>
+                            </div>
+                            @error('dob') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="father">Parents / Legal Guardian (Father)</label><br>
+                                <input type="text" name="father" value="{{ $student->father }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents / legal guardian (father)" required>
+                            </div>
+                            @error('father') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="mother">Parents / Legal Guardian (Mother)</label><br>
+                                <input type="text" name="mother" value="{{ $student->mother }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents / legal guardian (mother)" required>
+                            </div>
+                            @error('mother') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="parents_home_phone">Parents Home Phone</label><br>
+                                <input type="number" name="parents_home_phone" value="{{ $student->parents_home_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents home phone" required>
+                            </div>
+                            @error('parents_home_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="parents_work_phone">Parents Work Phone</label><br>
+                                <input type="number" name="parents_work_phone" value="{{ $student->parents_work_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents work phone">
+                            </div>
+                            @error('parents_work_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="parents_cell_phone">Parents Cell Phone</label><br>
+                                <input type="number" name="parents_cell_phone" value="{{ $student->parents_cell_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents cell phone">
+                            </div>
+                            @error('parents_cell_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="student_lives_with">Name of the Person Student Currently Lives With</label><br>
+                                <input type="text" name="student_lives_with" value="{{ $student->student_lives_with }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="name of the person student currently lives with" required>
+                            </div>
+                            @error('student_lives_with') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="gpa">Grades / GPA</label><br>
+                                <input type="text" name="gpa" value="{{ $student->gpa }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="gpa" required>
+                            </div>
+                            @error('gpa') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="counselor">Guidance Counselor</label><br>
+                                <input type="text" name="counselor" value="{{ $student->counselor }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="guidance counselor" required>
+                            </div>
+                            @error('counselor') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="emergency_contact">Name of Emergency Contact</label><br>
+                                <input type="text" name="emergency_contact" value="{{ $student->emergency_contact }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="name of emergency contact" required>
+                            </div>
+                            @error('emergency_contact') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="relationship_to_student">Relationship to Student</label><br>
+                                <input type="text" name="relationship_to_student" value="{{ $student->relationship_to_student }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="relationship to student" required>
+                            </div>
+                            @error('relationship_to_student') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="emergency_home_phone">Emergency Home Phone</label><br>
+                                <input type="number" name="emergency_home_phone" value="{{ $student->emergency_home_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="emergency home phone" required>
+                            </div>
+                            @error('emergency_home_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="emergency_work_phone">Emergency Work Phone</label><br>
+                                <input type="number" name="emergency_work_phone" value="{{ $student->emergency_work_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="emergency work phone">
+                            </div>
+                            @error('emergency_work_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br> 
+                            <div>
+                                <label for="emergency_cell_phone">Emergency Cell Phone</label><br>
+                                <input type="number" name="emergency_cell_phone" value="{{ $student->emergency_cell_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="emergency cell phone">
+                            </div>
+                            @error('emergency_cell_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="guardian_email">Guardian Email Address</label><br>
+                                <input type="text" name="guardian_email" value="{{ $student->guardian_email }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="guardian email address" required>
+                            </div>
+                            @error('guardian_email') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="student_email">Student Email Address</label><br>
+                                <input type="text" name="student_email" value="{{ $student->student_email }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="student email address" required>
+                            </div>
+                            @error('student_email') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            @if($student->parent_signature != null)
+                            <div class="exist_psignature">
+                                <label>Parent / Legal Guardian Signature</label><br>
+                                <div class="flex overflow-x-auto space-x-2">                              
+                                    <img class="h-24 w-28" src="{{ asset('storage') }}/{{ $student->parent_signature }}">
+                                </div><br>
+                                <div>
+                                    <button type="button" id="remove_psignature" title="change signature" class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-600 focus:bg-yellow-700 active:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-25">
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="add_psignature hidden">
+                                <div>
+                                    <label for="update_parent_signature">Parent / Legal Guardian Signature</label><br>
+                                    <input type="file" name="update_parent_signature" accept=".png, .jpg, .jpeg, .pdf" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                </div>
+                                @error('update_parent_signature') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            </div>
+                            @else
+                            <div>
+                                <label for="update_parent_signature">Parent / Legal Guardian Signature</label><br>
+                                <input type="file" name="update_parent_signature" accept=".png, .jpg, .jpeg, .pdf" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                            </div>
+                            @error('update_parent_signature') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @endif
+                            <input type="hidden" name="parent_signature_remove" id="parent_signature_remove" value="">
+
+                            @if($student->student_signature != null)
                             <div class="existsignature">
                                 <label>Student Signature</label><br>
                                 <div class="flex overflow-x-auto space-x-2">                              
-                                    <img class="h-24 w-28" src="{{ asset('storage') }}/{{ $student->signature }}">
+                                    <img class="h-24 w-28" src="{{ asset('storage') }}/{{ $student->student_signature }}">
                                 </div><br>
                                 <div>
                                     <button type="button" id="removesignature" title="change signature" class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-600 focus:bg-yellow-700 active:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-25">
@@ -241,23 +221,296 @@
                             </div>
                             <div class="addsignature hidden">
                                 <div>
-                                    <label for="update_signature">Student Signature</label><br>
-                                    <input type="file" name="update_signature" accept=".png, .jpg, .jpeg, .pdf" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                    <label for="update_student_signature">Student Signature</label><br>
+                                    <input type="file" name="update_student_signature" accept=".png, .jpg, .jpeg, .pdf" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                                 </div>
-                                @error('update_signature') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                                @error('update_student_signature') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             </div>
                             @else
                             <div>
-                                <label for="update_signature">Student Signature</label><br>
-                                <input type="file" name="update_signature" accept=".png, .jpg, .jpeg, .pdf" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                <label for="update_student_signature">Student Signature</label><br>
+                                <input type="file" name="update_student_signature" accept=".png, .jpg, .jpeg, .pdf" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                             </div>
-                            @error('update_signature') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('update_student_signature') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             @endif
-                            <input type="hidden" name="signature_remove" id="signature_remove" value="">
-                            <br>                            
-                        </div>
+                            <input type="hidden" name="student_signature_remove" id="student_signature_remove" value="">
+                            
+                            <div>
+                                @php 
+                                    $lives = json_decode($student->lives);
+                                @endphp
+                                <p class="font-semibold mb-2">Family Structure: (Please check all that apply and Provide Details)</p>
+                                <label for="lives" class="mb-4">1. With whom does the child live?</label><br>
+                                <div class="flex flex-wrap">
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="parents" type="checkbox" name="lives[]" value="Mother & Father" {{ in_array('Mother & Father', $lives ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="parents" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mother & Father</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="group_home" type="checkbox" name="lives[]" value="Group Home" {{ in_array('Group Home', $lives ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="group_home" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Group Home</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="other_relative" type="checkbox" name="lives[]" value="Other Relative" {{ in_array('Other Relative', $lives ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="other_relative" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Other Relative</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="mother" type="checkbox" name="lives[]" value="Mother" {{ in_array('Mother', $lives ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="mother" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mother</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="father" type="checkbox" name="lives[]" value="Father" {{ in_array('Father', $lives ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="father" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Father</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="foster" type="checkbox" name="lives[]" value="Foster Care" {{ in_array('Foster Care', $lives ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="foster" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Foster Care</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="grandparents" type="checkbox" name="lives[]" value="Grandparents" {{ in_array('Grandparents', $lives ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="grandparents" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Grandparents</label>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>  
+                            <div>
+                                <p class="font-semibold mb-2">Involvement with court system or Criminal Justice System: (Please check all that apply and Provide Details)</p>
+                                <label for="contact_with_police">Has He/She had any contact with the Police</label><br>
+                                <select name="contact_with_police" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="1" @if($student->contact_with_police === 1) selected @endif>Yes</option>
+                                    <option value="2" @if($student->contact_with_police === 2) selected @endif>No</option>
+                                </select> 
+                            </div>
+                            @error('contact_with_police') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <div class="mt-2">
+                                <label for="explain_contact_with_police">Explain</label><br>
+                                <input type="text" name="explain_contact_with_police" value="{{ $student->explain_contact_with_police }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="explain has he/she had any contact with the police">
+                            </div>
+                            <br> 
+                            <div>
+                                <label for="court_involement">Please Explain Any Involement with the Court System</label><br>
+                                <input type="text" name="court_involement" value="{{ $student->court_involement }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="involement with the court system" required>
+                            </div>
+                            @error('court_involement') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>  
+                            <div>                                
+                                <label for="incarcerated">Has this child been incarcerated before?</label><br>
+                                <select name="incarcerated" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="1" @if($student->incarcerated === 1) selected @endif>Yes</option>
+                                    <option value="2" @if($student->incarcerated === 2) selected @endif>No</option>
+                                </select> 
+                            </div>
+                            @error('incarcerated') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <div class="mt-2">
+                                <label for="explain_incarcerated">Explain</label><br>
+                                <input type="text" name="explain_incarcerated" value="{{ $student->explain_incarcerated }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="explain has this Child been incarcerated before?">
+                            </div>
+                            <br>
+                            <div>
+                                @php 
+                                    $events = json_decode($student->events);
+                                    $other_events = '';
+                                    $defined_events = [
+                                        'Separation / divorce of parents',
+                                        'Natural disaster',
+                                        'Turmoil',
+                                        'Abuse / neglect',
+                                        'Incarceration (family / friend)',
+                                        'Homelessness',
+                                        'Death (family / friend / pet)',
+                                        'Violent attack',
+                                        'AODA (family / friend)',
+                                        'Refugee / political',
+                                        'Other trauma',
+                                    ];
+                                    $other_events = array_diff($events, $defined_events);
+                                    $other_events = is_array($other_events) ? implode(', ', $other_events) : $other_events;
+                                @endphp
+                                <label for="events" class="mb-4">Recent traumatic events (please check all that apply and provide details below)</label><br>
+                                <div class="flex flex-wrap">
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="divorce" type="checkbox" name="events[]" value="Separation / divorce of parents" {{ in_array('Separation / divorce of parents', $events ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="divorce" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Separation / divorce of parents</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="disaster" type="checkbox" name="events[]" value="Natural disaster" {{ in_array('Natural disaster', $events ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="disaster" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Natural disaster</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="turmoil" type="checkbox" name="events[]" value="Turmoil" {{ in_array('Turmoil', $events ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="turmoil" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Turmoil</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="neglect" type="checkbox" name="events[]" value="Abuse / neglect" {{ in_array('Abuse / neglect', $events ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="neglect" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Abuse / neglect</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="incarceration" type="checkbox" name="events[]" value="Incarceration (family / friend)" {{ in_array('Incarceration (family / friend)', $events ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="incarceration" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Incarceration (family / friend)</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="homelessness" type="checkbox" name="events[]" value="Homelessness" {{ in_array('Homelessness', $events ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="homelessness" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Homelessness</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="death" type="checkbox" name="events[]" value="Death (family / friend / pet)" {{ in_array('Death (family / friend / pet)', $events ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="death" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Death (family / friend / pet)</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="violent" type="checkbox" name="events[]" value="Violent attack" {{ in_array('Violent attack', $events ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="violent" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Violent attack</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="aoda" type="checkbox" name="events[]" value="AODA (family / friend)" {{ in_array('AODA (family / friend)', $events ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="aoda" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">AODA (family / friend)</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="political" type="checkbox" name="events[]" value="Refugee / political" {{ in_array('Refugee / political', $events ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="political" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Refugee / political</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="trauma" type="checkbox" name="events[]" value="Other trauma" {{ in_array('Other trauma', $events ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="trauma" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Other trauma</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="events">Please provide any details</label><br>
+                                    <input type="text" name="events[]" value="{{ $other_events }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="please provide any details">
+                                </div>
+                                <br>
+                            </div>   
+                            <div>
+                                @php 
+                                    $other_infos = json_decode($student->other_infos);
+                                    $other_other_infos = '';
+                                    $defined_other_infos = [
+                                        'Currently enrolled in special education',
+                                        'Currently on probation',
+                                    ];
+                                    $other_other_infos = array_diff($other_infos, $defined_other_infos);
+                                    $other_other_infos = is_array($other_other_infos) ? implode(', ', $other_other_infos) : $other_other_infos;
+
+                                @endphp
+                                <label for="other_infos" class="mb-4">Other information on student:</label><br>
+                                <div class="flex flex-wrap">
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="special_edu" type="checkbox" name="other_infos[]" value="Currently enrolled in special education" {{ in_array('Currently enrolled in special education', $other_infos ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="special_edu" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Currently enrolled in special education</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="probation" type="checkbox" name="other_infos[]" value="Currently on probation" {{ in_array('Currently on probation', $other_infos ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="probation" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Currently on probation</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="other_infos">Other</label><br>
+                                    <input type="text" name="other_infos[]" value="{{ $other_other_infos }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="other">
+                                </div>
+                                <br>
+                            </div> 
+                            <p class="font-semibold mb-2">Previous Year School Information</p> 
+                            <div class="last_school">
+                                <label for="last_school">Last School Attended</label><br>
+                                <input type="text" name="last_school" value="{{ $student->last_school }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="last school attended">
+                            </div>
+                            <br>
+                            <div>
+                                @php 
+                                    $previous_conducts = json_decode($student->previous_conducts);
+                                    $other_incidents = '';
+                                    $defined_options = [
+                                        'Fighting',
+                                        'Failed Classes',
+                                        'Arson',
+                                        'Class Misconduct',
+                                        'Lateness',
+                                        'Gambling',
+                                        'Class Cutting',
+                                        'Truancy',
+                                        'Drug Use'
+                                    ];
+                                    $other_incidents = array_diff($previous_conducts, $defined_options);
+                                    $other_incidents = is_array($other_incidents) ? implode(', ', $other_incidents) : $other_incidents;
+                                @endphp
+                                <label for="previous_conducts" class="mb-4">Previous school conduct (please check all that apply)</label><br>
+                                <div class="flex flex-wrap">
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="fighting" type="checkbox" name="previous_conducts[]" value="Fighting" {{ in_array('Fighting', $previous_conducts ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="fighting" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Fighting</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="failed_classes" type="checkbox" name="previous_conducts[]" value="Failed Classes" {{ in_array('Failed Classes', $previous_conducts ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="failed_classes" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Failed Classes</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="arson" type="checkbox" name="previous_conducts[]" value="Arson" {{ in_array('Arson', $previous_conducts ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="arson" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Arson</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="misconduct" type="checkbox" name="previous_conducts[]" value="Class Misconduct" {{ in_array('Class Misconduct', $previous_conducts ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="misconduct" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Class Misconduct</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="lateness" type="checkbox" name="previous_conducts[]" value="Lateness" {{ in_array('Lateness', $previous_conducts ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="lateness" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Lateness</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="gambling" type="checkbox" name="previous_conducts[]" value="Gambling" {{ in_array('Gambling', $previous_conducts ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="gambling" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Gambling</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="class_cut" type="checkbox" name="previous_conducts[]" value="Class Cutting" {{ in_array('Class Cutting', $previous_conducts ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="class_cut" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Class Cutting</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="truancy" type="checkbox" name="previous_conducts[]" value="Truancy" {{ in_array('Truancy', $previous_conducts ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="truancy" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Truancy</label>
+                                    </div>
+                                    <div class="w-1/3 p-2 flex items-center">
+                                        <input id="drug_use" type="checkbox" name="previous_conducts[]" value="Drug Use" {{ in_array('Drug Use', $previous_conducts ?? []) ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="drug_use" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Drug Use</label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="previous_conducts">Other violent incident:</label><br>
+                                    <input type="text" name="previous_conducts[]" value="{{ $other_incidents }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="other violent incident">
+                                </div>
+                                <br>
+                            </div>
+                            <div class="suspended_time">
+                                <label for="suspended_time">How many times has this child been suspended in his/her previous year?</label><br>
+                                <input type="text" name="suspended_time" value="{{ $student->suspended_time }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="how many times has this child been suspended in his/her previous year?" required>
+                            </div>
+                            <br>
+                            <div>                                
+                                <label for="ever_expelled">Has this child ever been expelled?</label><br>
+                                <select name="ever_expelled" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="1" @if($student->ever_expelled === 1) selected @endif>Yes</option>
+                                    <option value="2" @if($student->ever_expelled === 2) selected @endif>No</option>
+                                </select> 
+                            </div>
+                            @error('ever_expelled') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <div class="mt-2">
+                                <label for="explain_ever_expelled">Explain</label><br>
+                                <input type="text" name="explain_ever_expelled" value="{{ $student->explain_ever_expelled }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="explain has this child ever been expelled?">
+                            </div>
+                            <br> 
+                            <div class="additional_info">
+                                <label for="additional_info">Any additional information about the previous year</label><br>
+                                <input type="text" name="additional_info" value="{{ $student->additional_info }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="any additional information about the previous year">
+                            </div>
+                            <br> 
+                            <div class="advisor">
+                                <label for="advisor">Youth advisor</label><br>
+                                <input type="text" name="advisor" value="{{ $student->advisor }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="youth advisor">
+                            </div>
+                            <br>                                          
+                        </div>                        
                     </div>
-                    <button type="submit" class="disabled:opacity-25 inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-900 focus:bg-blue-900 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-25">Update</button>
+                    <button type="submit" class="passwordvalid disabled:opacity-25 inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-900 focus:bg-blue-900 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-25">Save</button>                        
                 </form>
             </div>
         </div>
@@ -271,52 +524,14 @@
     {
         $('.existsignature').hide();
         $('.addsignature').show();
-        $('#signature_remove').val(1);
+        $('#student_signature_remove').val(1);
     });
 
-    function toggleOtherInput1(checkbox) {
-        const input1 = document.getElementById('other-input1');
-        if (checkbox.checked) {
-            input1.disabled = false;
-            input1.required = true;
-        } else {
-            input1.disabled = true;
-            input1.value = '';
-            input1.required = false;
-        }
-    }
-
-    function toggleOtherInput(checkbox) {
-        const input = document.getElementById('other-input');
-        if (checkbox.checked) {
-            input.disabled = false;
-            input.required = true;
-        } else {
-            input.disabled = true;
-            input.value = '';
-            input.required = false;
-        }
-    }
-
-    function toggleRequired() {
-        // Get the selected type of ERO
-        var happend_result = document.getElementById('happend_result').value;
-        var happend_result_other = document.getElementById('happend_result_other');
-
-        
-        if (happend_result == "8") {
-            $('#happend_other').show();
-            happend_result_other.required = true;
-        } else {
-            $('#happend_other').hide();
-            happend_result_other.required = false;
-        }
-    }
-
-    window.onload = function () {
-        toggleOtherInput1(document.getElementById('other'));
-        toggleOtherInput(document.getElementById('other1'));
-        toggleRequired();
-    };
+    $('#remove_psignature').on('click', function()
+    {
+        $('.exist_psignature').hide();
+        $('.add_psignature').show();
+        $('#parent_signature_remove').val(1);
+    });
 </script>
 @endpush

@@ -40,6 +40,10 @@
                                 <img src="{{ asset('assets/student.svg') }}" alt="Students Icon" class="w-5 h-5">    
                                 <span class="font-semibold">Students</span>
                             </li></a>
+                            <a href="{{ route('assessments.index') }}"><li class="{{ (request()->segment(1) == 'assessments') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                                <img src="{{ asset('assets/assessment.svg') }}" alt="Self-Assessment Icon" class="w-5 h-5">    
+                                <span class="font-semibold">Self-Assessment</span>
+                            </li></a>
                             <a href="{{ route('profile.index') }}"><li class="{{ (request()->segment(1) == 'profile') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                 <img src="{{ asset('assets/profile.svg') }}" alt="Profile Icon" class="w-5 h-5">
                                 <span class="font-semibold">Profile</span>
@@ -77,6 +81,18 @@
                                     <a href="{{ route('profile.index') }}"><li class="{{ (request()->segment(1) == 'profile') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                         <img src="{{ asset('assets/profile.svg') }}" alt="Profile Icon" class="w-5 h-5">
                                         <span class="font-semibold">Profile</span>
+                                    </li></a>
+                                    <a href="{{ route('users.index') }}"><li class="{{ (request()->segment(1) == 'teachers') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                                        <img src="{{ asset('assets/teacher.svg') }}" alt="Teachers Icon" class="w-5 h-5">    
+                                        <span class="font-semibold">Teachers</span>
+                                    </li></a>
+                                    <a href="{{ route('students.index') }}"><li class="{{ (request()->segment(1) == 'students') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                                        <img src="{{ asset('assets/student.svg') }}" alt="Students Icon" class="w-5 h-5">    
+                                        <span class="font-semibold">Students</span>
+                                    </li></a>
+                                    <a href="{{ route('assessments.index') }}"><li class="{{ (request()->segment(1) == 'assessments') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                                        <img src="{{ asset('assets/assessment.svg') }}" alt="Self-Assessment Icon" class="w-5 h-5">    
+                                        <span class="font-semibold">Self-Assessment</span>
                                     </li></a>
                                     <a href="{{ route('users.index') }}"><li class="{{ (request()->segment(1) == 'users') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                         <img src="{{ asset('assets/admin.svg') }}" alt="Users Icon" class="w-5 h-5">    

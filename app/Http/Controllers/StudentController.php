@@ -25,45 +25,75 @@ class StudentController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:students,contact',
-            'email' => 'required|email|unique:students,email',
+            'school' => 'required',
         ]);
 
-        $areas= json_encode($request->areas);
-        $relationships= json_encode($request->relationships);
+        $lives = json_encode($request->lives);
+        $events = json_encode($request->events);
+        $other_infos = json_encode($request->other_infos);
+        $previous_conducts = json_encode($request->previous_conducts);
 
         $student = new Student();
         $student->name = $request->name;
-        $student->contact = $request->contact;
-        $student->email = $request->email;
-        $student->areas = $areas;
-        $student->relationships = $relationships;
-        $student->cooperative = $request->cooperative;
-        $student->grades_fine = $request->grades_fine;
-        $student->school_attitude = $request->school_attitude;
-        $student->interested_in_education = $request->interested_in_education;
-        $student->work_well_with_students = $request->work_well_with_students;
-        $student->satisfied_with_friends = $request->satisfied_with_friends;
-        $student->do_homework = $request->do_homework;
-        $student->life_attitude = $request->life_attitude;
-        $student->dont_hang_street = $request->dont_hang_street;
-        $student->cooperative_with_parent = $request->cooperative_with_parent;
-        $student->dont_get_trouble = $request->dont_get_trouble;
-        $student->getting_job = $request->getting_job;
-        $student->have_you_stopped = $request->have_you_stopped;
-        $student->stop_fair = $request->stop_fair;
-        $student->happend_result = $request->happend_result;
-        $student->happend_result_other = $request->happend_result_other;
         $student->school = $request->school;
+        $student->address = $request->address;
+        $student->city = $request->city;
+        $student->state = $request->state;
+        $student->zip = $request->zip;
+        $student->home_phone = $request->home_phone;
+        $student->work_phone = $request->work_phone;
+        $student->cell_phone = $request->cell_phone;
+        $student->gender = $request->gender;
+        $student->ethnicity = $request->ethnicity;
+        $student->age = $request->age;
+        $student->dob = $request->dob;
+        $student->father = $request->father;
+        $student->mother = $request->mother;
+        $student->parents_home_phone = $request->parents_home_phone;
+        $student->parents_work_phone = $request->parents_work_phone;
+        $student->parents_cell_phone = $request->parents_cell_phone;
+        $student->student_lives_with = $request->student_lives_with;
+        $student->gpa = $request->gpa;
+        $student->counselor = $request->counselor;
+        $student->emergency_contact = $request->emergency_contact;
+        $student->relationship_to_student = $request->relationship_to_student;
+        $student->emergency_home_phone = $request->emergency_home_phone;
+        $student->emergency_work_phone = $request->emergency_work_phone;
+        $student->emergency_cell_phone = $request->emergency_cell_phone;
+        $student->guardian_email = $request->guardian_email;
+        $student->student_email = $request->student_email;
+        $student->lives = $lives;
+        $student->contact_with_police = $request->contact_with_police;
+        $student->explain_contact_with_police = $request->explain_contact_with_police;
+        $student->court_involement = $request->court_involement;
+        $student->incarcerated = $request->incarcerated;
+        $student->explain_incarcerated = $request->explain_incarcerated;
+        $student->events = $events;
+        $student->other_infos = $other_infos;
+        $student->last_school = $request->last_school;
+        $student->previous_conducts = $previous_conducts;
+        $student->suspended_time = $request->suspended_time;
+        $student->ever_expelled = $request->ever_expelled;
+        $student->explain_ever_expelled = $request->explain_ever_expelled;
+        $student->additional_info = $request->additional_info;
+        $student->advisor = $request->advisor;
         $student->save();
 
-        if($request->hasFile('signature')) {
-            $signature = $request->file('signature');
+        if($request->hasFile('parent_signature')) {
+            $parent_signature = $request->file('parent_signature');
             $folderName = 'signatures';        
-            $path = $signature->store($folderName, 'public');
-            $student->signature = $path;
+            $path = $parent_signature->store($folderName, 'public');
+            $student->parent_signature = $path;
             $student->save();
-        }        
+        } 
+        
+        if($request->hasFile('student_signature')) {
+            $student_signature = $request->file('student_signature');
+            $folderName = 'signatures';        
+            $path_stu = $student_signature->store($folderName, 'public');
+            $student->student_signature = $path_stu;
+            $student->save();
+        } 
 
         if($student){
             return redirect()->route('students.index')->with('status', 'Student data recorded successfully.');         
@@ -85,54 +115,97 @@ class StudentController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|unique:students,contact, ' . $student->id,
-            'email' => 'required|email|unique:students,email,' . $student->id,
+            'school' => 'required',
         ]);
 
-        $areas= json_encode($request->areas);
-        $relationships= json_encode($request->relationships);
+        $lives = json_encode($request->lives);
+        $events = json_encode($request->events);
+        $other_infos = json_encode($request->other_infos);
+        $previous_conducts = json_encode($request->previous_conducts);
 
         $student->name = $request->name;
-        $student->contact = $request->contact;
-        $student->email = $request->email;
-        $student->areas = $areas;
-        $student->relationships = $relationships;
-        $student->cooperative = $request->cooperative;
-        $student->grades_fine = $request->grades_fine;
-        $student->school_attitude = $request->school_attitude;
-        $student->interested_in_education = $request->interested_in_education;
-        $student->work_well_with_students = $request->work_well_with_students;
-        $student->satisfied_with_friends = $request->satisfied_with_friends;
-        $student->do_homework = $request->do_homework;
-        $student->life_attitude = $request->life_attitude;
-        $student->dont_hang_street = $request->dont_hang_street;
-        $student->cooperative_with_parent = $request->cooperative_with_parent;
-        $student->dont_get_trouble = $request->dont_get_trouble;
-        $student->getting_job = $request->getting_job;
-        $student->have_you_stopped = $request->have_you_stopped;
-        $student->stop_fair = $request->stop_fair;
-        $student->happend_result = $request->happend_result;
-        $student->happend_result_other = $request->happend_result_other;
         $student->school = $request->school;
+        $student->address = $request->address;
+        $student->city = $request->city;
+        $student->state = $request->state;
+        $student->zip = $request->zip;
+        $student->home_phone = $request->home_phone;
+        $student->work_phone = $request->work_phone;
+        $student->cell_phone = $request->cell_phone;
+        $student->gender = $request->gender;
+        $student->ethnicity = $request->ethnicity;
+        $student->age = $request->age;
+        $student->dob = $request->dob;
+        $student->father = $request->father;
+        $student->mother = $request->mother;
+        $student->parents_home_phone = $request->parents_home_phone;
+        $student->parents_work_phone = $request->parents_work_phone;
+        $student->parents_cell_phone = $request->parents_cell_phone;
+        $student->student_lives_with = $request->student_lives_with;
+        $student->gpa = $request->gpa;
+        $student->counselor = $request->counselor;
+        $student->emergency_contact = $request->emergency_contact;
+        $student->relationship_to_student = $request->relationship_to_student;
+        $student->emergency_home_phone = $request->emergency_home_phone;
+        $student->emergency_work_phone = $request->emergency_work_phone;
+        $student->emergency_cell_phone = $request->emergency_cell_phone;
+        $student->guardian_email = $request->guardian_email;
+        $student->student_email = $request->student_email;
+        $student->lives = $lives;
+        $student->contact_with_police = $request->contact_with_police;
+        $student->explain_contact_with_police = $request->explain_contact_with_police;
+        $student->court_involement = $request->court_involement;
+        $student->incarcerated = $request->incarcerated;
+        $student->explain_incarcerated = $request->explain_incarcerated;
+        $student->events = $events;
+        $student->other_infos = $other_infos;
+        $student->last_school = $request->last_school;
+        $student->previous_conducts = $previous_conducts;
+        $student->suspended_time = $request->suspended_time;
+        $student->ever_expelled = $request->ever_expelled;
+        $student->explain_ever_expelled = $request->explain_ever_expelled;
+        $student->additional_info = $request->additional_info;
+        $student->advisor = $request->advisor;
         $student->save();
 
-        if($request->hasFile('update_signature')) {                
-            if($student->signature != null){
-                Storage::disk('public')->delete($student->signature);
-                $student->signature = null;
+        if($request->hasFile('update_parent_signature')) {                
+            if($student->parent_signature != null){
+                Storage::disk('public')->delete($student->parent_signature);
+                $student->parent_signature = null;
                 $student->save();
             }
         
-            $update_signature = $request->file('update_signature');
+            $update_parent_signature = $request->file('update_parent_signature');
             $folderName = 'signatures';        
-            $path = $update_signature->store($folderName, 'public');
-            $student->signature = $path;
+            $path = $update_parent_signature->store($folderName, 'public');
+            $student->parent_signature = $path;
             $student->save();
 
-        }elseif(!$request->hasFile('update_signature') && $request->signature_remove == "1"){
-            if($student->signature != null){
-                Storage::disk('public')->delete($student->signature);
-                $student->signature = null;
+        }elseif(!$request->hasFile('update_parent_signature') && $request->parent_signature_remove == "1"){
+            if($student->parent_signature != null){
+                Storage::disk('public')->delete($student->parent_signature);
+                $student->parent_signature = null;
+                $student->save();
+            }
+        }
+
+        if($request->hasFile('update_student_signature')) {                
+            if($student->student_signature != null){
+                Storage::disk('public')->delete($student->student_signature);
+                $student->student_signature = null;
+                $student->save();
+            }
+        
+            $update_student_signature = $request->file('update_student_signature');
+            $folderName = 'signatures';        
+            $path1 = $update_student_signature->store($folderName, 'public');
+            $student->student_signature = $path1;
+            $student->save();
+
+        }elseif(!$request->hasFile('update_student_signature') && $request->student_signature_remove == "1"){
+            if($student->student_signature != null){
+                Storage::disk('public')->delete($student->student_signature);
+                $student->student_signature = null;
                 $student->save();
             }
         }
@@ -145,11 +218,18 @@ class StudentController extends Controller
         $student = Student::find($request->data_id);
         if($student)
         {
-            if($student->signature != null){
-                Storage::disk('public')->delete($student->signature);
-                $student->signature = null;
+            if($student->parent_signature != null){
+                Storage::disk('public')->delete($student->parent_signature);
+                $student->parent_signature = null;
                 $student->save();
             }
+
+            if($student->student_signature != null){
+                Storage::disk('public')->delete($student->student_signature);
+                $student->student_signature = null;
+                $student->save();
+            }
+
             $student->delete();
 
             return redirect()->route('students.index')->with('delete', 'Student data deleted successfully.');

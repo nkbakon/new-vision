@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\AssessmentController;
 use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\StudentController;
 use \App\Http\Controllers\UserController;
@@ -40,6 +41,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('students/update/{student}', [StudentController::class, 'update'])->name('students.update');
     Route::delete('students/destroy', [StudentController::class, 'destroy'])->name('students.destroy');
     Route::get('students/{student}/view', [StudentController::class, 'view'])->name('students.view');
+
+    Route::get('assessments/create', [AssessmentController::class, 'create'])->name('assessments.create');
+    Route::post('assessments/store', [AssessmentController::class, 'store'])->name('assessments.store');
+    Route::get('/assessments/email/check', [AssessmentController::class, 'emailcheck'])->name('assessments.emailcheck');
+    Route::get('/assessments/contact/check', [AssessmentController::class, 'contactcheck'])->name('assessments.contactcheck');
+    Route::get('assessments', [AssessmentController::class, 'index'])->name('assessments.index');         
+    Route::get('assessments/edit/{assessment}', [AssessmentController::class, 'edit'])->name('assessments.edit');
+    Route::put('assessments/update/{assessment}', [AssessmentController::class, 'update'])->name('assessments.update');
+    Route::delete('assessments/destroy', [AssessmentController::class, 'destroy'])->name('assessments.destroy');
+    Route::get('assessments/{assessment}/view', [AssessmentController::class, 'view'])->name('assessments.view');
 
     Route::get('users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('users/store', [UserController::class, 'store'])->name('users.store');
