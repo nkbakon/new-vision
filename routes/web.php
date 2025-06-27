@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AssessmentController;
 use \App\Http\Controllers\AuthController;
+use \App\Http\Controllers\EvaluationController;
 use \App\Http\Controllers\LogController;
 use \App\Http\Controllers\SelectionController;
 use \App\Http\Controllers\StudentController;
@@ -69,6 +70,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('logs/update/{log}', [LogController::class, 'update'])->name('logs.update');
     Route::delete('logs/destroy', [LogController::class, 'destroy'])->name('logs.destroy');
     Route::get('logs/{log}/view', [LogController::class, 'view'])->name('logs.view');
+
+    Route::get('evaluations/create', [EvaluationController::class, 'create'])->name('evaluations.create');
+    Route::post('evaluations/store', [EvaluationController::class, 'store'])->name('evaluations.store');
+    Route::get('evaluations', [EvaluationController::class, 'index'])->name('evaluations.index');         
+    Route::get('evaluations/edit/{evaluation}', [EvaluationController::class, 'edit'])->name('evaluations.edit');
+    Route::put('evaluations/update/{evaluation}', [EvaluationController::class, 'update'])->name('evaluations.update');
+    Route::delete('evaluations/destroy', [EvaluationController::class, 'destroy'])->name('evaluations.destroy');
+    Route::get('evaluations/{evaluation}/view', [EvaluationController::class, 'view'])->name('evaluations.view');
     
     Route::get('users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('users/store', [UserController::class, 'store'])->name('users.store');
