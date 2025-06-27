@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AssessmentController;
 use \App\Http\Controllers\AuthController;
+use \App\Http\Controllers\SelectionController;
 use \App\Http\Controllers\StudentController;
 use \App\Http\Controllers\UserController;
 
@@ -52,6 +53,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('assessments/destroy', [AssessmentController::class, 'destroy'])->name('assessments.destroy');
     Route::get('assessments/{assessment}/view', [AssessmentController::class, 'view'])->name('assessments.view');
 
+    Route::get('selections/create', [SelectionController::class, 'create'])->name('selections.create');
+    Route::post('selections/store', [SelectionController::class, 'store'])->name('selections.store');
+    Route::get('selections', [SelectionController::class, 'index'])->name('selections.index');         
+    Route::get('selections/edit/{selection}', [SelectionController::class, 'edit'])->name('selections.edit');
+    Route::put('selections/update/{selection}', [SelectionController::class, 'update'])->name('selections.update');
+    Route::delete('selections/destroy', [SelectionController::class, 'destroy'])->name('selections.destroy');
+    Route::get('selections/{selection}/view', [SelectionController::class, 'view'])->name('selections.view');
+    
     Route::get('users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('users/store', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/email/check', [UserController::class, 'emailcheck'])->name('users.emailcheck');
