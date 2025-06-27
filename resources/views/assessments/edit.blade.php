@@ -217,7 +217,7 @@
                             <br> 
                             <div>
                                 <label for="school">School (Applicable to school/program)</label><br>
-                                <input type="text" name="school" value="{{ $stuassessmentdent->school }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="school (applicable to school/program)" required>
+                                <input type="text" name="school" value="{{ $assessment->school }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="school (applicable to school/program)" required>
                             </div>
                             @error('school') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>

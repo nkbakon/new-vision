@@ -26,7 +26,7 @@
         <div class="min-h-screen bg-gray-100"> 
             <div class="md:flex md:bg-white">
                 <div class="hidden md:block md:flex w-2/5 md:w-1/5 h-screen sticky text-white top-0 bg-indigo-800 border-r hidden">
-                    <div class="mx-auto py-5 mt-8">
+                    <div class="mx-auto py-5">
                         <ul>                    
                             <a href="{{ route('dashboard') }}"><li class="{{ (request()->segment(1) == 'dashboard') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-10 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                 <img src="{{ asset('assets/home.svg') }}" alt="Dashboard Icon" class="w-5 h-5">
@@ -43,6 +43,10 @@
                             <a href="{{ route('selections.index') }}"><li class="{{ (request()->segment(1) == 'selections') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                 <img src="{{ asset('assets/selection.svg') }}" alt="Selection Icon" class="w-5 h-5">    
                                 <span class="font-semibold">Selection Sheet</span>
+                            </li></a>
+                            <a href="{{ route('logs.index') }}"><li class="{{ (request()->segment(1) == 'logs') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                                <img src="{{ asset('assets/log.svg') }}" alt="Action Logs Icon" class="w-5 h-5">    
+                                <span class="font-semibold">Action Logs</span>
                             </li></a>
                             <a href="{{ route('profile.index') }}"><li class="{{ (request()->segment(1) == 'profile') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                 <img src="{{ asset('assets/profile.svg') }}" alt="Profile Icon" class="w-5 h-5">
@@ -89,6 +93,10 @@
                                     <a href="{{ route('selections.index') }}"><li class="{{ (request()->segment(1) == 'selections') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                         <img src="{{ asset('assets/selection.svg') }}" alt="Selection Icon" class="w-5 h-5">    
                                         <span class="font-semibold">Selection Sheet</span>
+                                    </li></a>
+                                    <a href="{{ route('logs.index') }}"><li class="{{ (request()->segment(1) == 'logs') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                                        <img src="{{ asset('assets/log.svg') }}" alt="Action Logs Icon" class="w-5 h-5">    
+                                        <span class="font-semibold">Action Logs</span>
                                     </li></a>
                                     <a href="{{ route('profile.index') }}"><li class="{{ (request()->segment(1) == 'profile') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                         <img src="{{ asset('assets/profile.svg') }}" alt="Profile Icon" class="w-5 h-5">

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AssessmentController;
 use \App\Http\Controllers\AuthController;
+use \App\Http\Controllers\LogController;
 use \App\Http\Controllers\SelectionController;
 use \App\Http\Controllers\StudentController;
 use \App\Http\Controllers\UserController;
@@ -60,6 +61,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('selections/update/{selection}', [SelectionController::class, 'update'])->name('selections.update');
     Route::delete('selections/destroy', [SelectionController::class, 'destroy'])->name('selections.destroy');
     Route::get('selections/{selection}/view', [SelectionController::class, 'view'])->name('selections.view');
+
+    Route::get('logs/create', [LogController::class, 'create'])->name('logs.create');
+    Route::post('logs/store', [LogController::class, 'store'])->name('logs.store');
+    Route::get('logs', [LogController::class, 'index'])->name('logs.index');         
+    Route::get('logs/edit/{log}', [LogController::class, 'edit'])->name('logs.edit');
+    Route::put('logs/update/{log}', [LogController::class, 'update'])->name('logs.update');
+    Route::delete('logs/destroy', [LogController::class, 'destroy'])->name('logs.destroy');
+    Route::get('logs/{log}/view', [LogController::class, 'view'])->name('logs.view');
     
     Route::get('users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('users/store', [UserController::class, 'store'])->name('users.store');
