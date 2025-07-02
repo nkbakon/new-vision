@@ -52,6 +52,10 @@
                                 <img src="{{ asset('assets/evaluation.svg') }}" alt="Post Evaluation Icon" class="w-5 h-5">    
                                 <span class="font-semibold">Post Evaluation</span>
                             </li></a>
+                            <a href="{{ route('outreaches.index') }}"><li class="{{ (request()->segment(1) == 'outreaches') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                                <img src="{{ asset('assets/outreach.svg') }}" alt="Post Evaluation Icon" class="w-5 h-5">    
+                                <span class="font-semibold">Outreaches</span>
+                            </li></a>
                             <a href="{{ route('profile.index') }}"><li class="{{ (request()->segment(1) == 'profile') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                 <img src="{{ asset('assets/profile.svg') }}" alt="Profile Icon" class="w-5 h-5">
                                 <span class="font-semibold">Profile</span>
@@ -105,6 +109,10 @@
                                     <a href="{{ route('evaluations.index') }}"><li class="{{ (request()->segment(1) == 'evaluations') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                         <img src="{{ asset('assets/evaluation.svg') }}" alt="Post Evaluation Icon" class="w-5 h-5">    
                                         <span class="font-semibold">Post Evaluation</span>
+                                    </li></a>
+                                    <a href="{{ route('outreaches.index') }}"><li class="{{ (request()->segment(1) == 'outreaches') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                                        <img src="{{ asset('assets/outreach.svg') }}" alt="Post Evaluation Icon" class="w-5 h-5">    
+                                        <span class="font-semibold">Outreaches</span>
                                     </li></a>
                                     <a href="{{ route('profile.index') }}"><li class="{{ (request()->segment(1) == 'profile') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                         <img src="{{ asset('assets/profile.svg') }}" alt="Profile Icon" class="w-5 h-5">

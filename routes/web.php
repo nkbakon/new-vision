@@ -6,6 +6,7 @@ use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\ConsentController;
 use \App\Http\Controllers\EvaluationController;
 use \App\Http\Controllers\LogController;
+use \App\Http\Controllers\OutreachController;
 use \App\Http\Controllers\SelectionController;
 use \App\Http\Controllers\StudentController;
 use \App\Http\Controllers\UserController;
@@ -79,6 +80,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('logs/update/{log}', [LogController::class, 'update'])->name('logs.update');
     Route::delete('logs/destroy', [LogController::class, 'destroy'])->name('logs.destroy');
     Route::get('logs/{log}/view', [LogController::class, 'view'])->name('logs.view');
+
+    Route::get('outreaches/create', [OutreachController::class, 'create'])->name('outreaches.create');
+    Route::post('outreaches/store', [OutreachController::class, 'store'])->name('outreaches.store');
+    Route::get('outreaches', [OutreachController::class, 'index'])->name('outreaches.index');         
+    Route::get('outreaches/edit/{outreach}', [OutreachController::class, 'edit'])->name('outreaches.edit');
+    Route::put('outreaches/update/{outreach}', [OutreachController::class, 'update'])->name('outreaches.update');
+    Route::delete('outreaches/destroy', [OutreachController::class, 'destroy'])->name('outreaches.destroy');
+    Route::get('outreaches/{outreach}/view', [OutreachController::class, 'view'])->name('outreaches.view');
 
     Route::get('evaluations/create', [EvaluationController::class, 'create'])->name('evaluations.create');
     Route::post('evaluations/store', [EvaluationController::class, 'store'])->name('evaluations.store');
