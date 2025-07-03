@@ -55,7 +55,7 @@
                 <br> 
 
                 <div class="flex justify-between mb-2">
-                    <span><span class="font-semibold">Student's Name:</span>{{ $consent->student->name }}</span>
+                    <span><span class="font-semibold">Student's Name:</span>@if(isset($consent->student)){{ $consent->student->name }}@endif</span>
                     <span><span class="font-semibold">Date:</span>{{ $consent->created_at->format('Y-m-d') }}</span>
                 </div>
 

@@ -26,7 +26,7 @@
                 <h1 class="text-center text-xl">Student Selection Sheet</h1>
                 <hr style="height:2px; background-color:#333; border:none;"><br>
                 <div class="flex justify-between mb-2">
-                    <span><span class="font-semibold">Student's Name:</span>{{ $selection->student->name }}</span>
+                    <span><span class="font-semibold">Student's Name:</span>@if(isset($selection->student)){{ $selection->student->name }}@endif</span>
                     <span><span class="font-semibold">Date:</span>{{ $selection->created_at->format('Y-m-d') }}</span>
                 </div>
                 <div class="flex justify-between mb-2">

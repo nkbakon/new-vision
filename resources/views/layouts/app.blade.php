@@ -28,7 +28,7 @@
                 <div class="hidden md:block md:flex w-2/5 md:w-1/5 h-screen sticky text-white top-0 bg-indigo-800 border-r hidden">
                     <div class="mx-auto py-5">
                         <ul>                    
-                            <a href="{{ route('dashboard') }}"><li class="{{ (request()->segment(1) == 'dashboard') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-10 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                            <a href="{{ route('dashboard') }}"><li class="{{ (request()->segment(1) == 'dashboard') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                 <img src="{{ asset('assets/home.svg') }}" alt="Dashboard Icon" class="w-5 h-5">
                                 <span class="font-semibold">Dashboard</span>
                             </li></a>                             
@@ -53,8 +53,12 @@
                                 <span class="font-semibold">Post Evaluation</span>
                             </li></a>
                             <a href="{{ route('outreaches.index') }}"><li class="{{ (request()->segment(1) == 'outreaches') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
-                                <img src="{{ asset('assets/outreach.svg') }}" alt="Post Evaluation Icon" class="w-5 h-5">    
+                                <img src="{{ asset('assets/outreach.svg') }}" alt="Outreaches Icon" class="w-5 h-5">    
                                 <span class="font-semibold">Outreaches</span>
+                            </li></a>
+                            <a href="{{ route('mediations.index') }}"><li class="{{ (request()->segment(1) == 'mediations') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                                <img src="{{ asset('assets/mediation.svg') }}" alt="Mediations Icon" class="w-5 h-5">    
+                                <span class="font-semibold">Mediations</span>
                             </li></a>
                             <a href="{{ route('profile.index') }}"><li class="{{ (request()->segment(1) == 'profile') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                 <img src="{{ asset('assets/profile.svg') }}" alt="Profile Icon" class="w-5 h-5">
@@ -86,7 +90,7 @@
                         <div id="mobile-menu" class="hidden md:hidden">
                             <nav class="flex flex-col items-center font-semibold text-white space-y-2 py-2">
                                 <ul>                    
-                                    <a href="{{ route('dashboard') }}"><li class="{{ (request()->segment(1) == 'dashboard') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-10 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                                    <a href="{{ route('dashboard') }}"><li class="{{ (request()->segment(1) == 'dashboard') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                         <img src="{{ asset('assets/home.svg') }}" alt="Dashboard Icon" class="w-5 h-5">
                                         <span class="font-semibold">Dashboard</span>
                                     </li></a>
@@ -113,6 +117,10 @@
                                     <a href="{{ route('outreaches.index') }}"><li class="{{ (request()->segment(1) == 'outreaches') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                         <img src="{{ asset('assets/outreach.svg') }}" alt="Post Evaluation Icon" class="w-5 h-5">    
                                         <span class="font-semibold">Outreaches</span>
+                                    </li></a>
+                                    <a href="{{ route('mediations.index') }}"><li class="{{ (request()->segment(1) == 'mediations') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
+                                        <img src="{{ asset('assets/mediation.svg') }}" alt="Mediations Icon" class="w-5 h-5">    
+                                        <span class="font-semibold">Mediations</span>
                                     </li></a>
                                     <a href="{{ route('profile.index') }}"><li class="{{ (request()->segment(1) == 'profile') ? 'bg-indigo-950 border-indigo-950': '' }} px-3 py-1 flex space-x-2 mt-4 rounded-md border-indigo-950 cursor-pointer hover:bg-indigo-950 hover:border-indigo-950">					
                                         <img src="{{ asset('assets/profile.svg') }}" alt="Profile Icon" class="w-5 h-5">

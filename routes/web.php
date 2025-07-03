@@ -6,6 +6,7 @@ use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\ConsentController;
 use \App\Http\Controllers\EvaluationController;
 use \App\Http\Controllers\LogController;
+use \App\Http\Controllers\MediationController;
 use \App\Http\Controllers\OutreachController;
 use \App\Http\Controllers\SelectionController;
 use \App\Http\Controllers\StudentController;
@@ -88,6 +89,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('outreaches/update/{outreach}', [OutreachController::class, 'update'])->name('outreaches.update');
     Route::delete('outreaches/destroy', [OutreachController::class, 'destroy'])->name('outreaches.destroy');
     Route::get('outreaches/{outreach}/view', [OutreachController::class, 'view'])->name('outreaches.view');
+
+    Route::get('mediations/create', [MediationController::class, 'create'])->name('mediations.create');
+    Route::post('mediations/store', [MediationController::class, 'store'])->name('mediations.store');
+    Route::get('mediations', [MediationController::class, 'index'])->name('mediations.index');         
+    Route::get('mediations/edit/{mediation}', [MediationController::class, 'edit'])->name('mediations.edit');
+    Route::put('mediations/update/{mediation}', [MediationController::class, 'update'])->name('mediations.update');
+    Route::delete('mediations/destroy', [MediationController::class, 'destroy'])->name('mediations.destroy');
+    Route::get('mediations/{mediation}/view', [MediationController::class, 'view'])->name('mediations.view');
 
     Route::get('evaluations/create', [EvaluationController::class, 'create'])->name('evaluations.create');
     Route::post('evaluations/store', [EvaluationController::class, 'store'])->name('evaluations.store');

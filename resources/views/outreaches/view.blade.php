@@ -26,7 +26,7 @@
                 <h1 class="text-center text-xl">Outreach Form</h1>
                 <hr style="height:2px; background-color:#333; border:none;"><br>
                 <div class="flex justify-between mb-2">
-                    <span><span class="font-semibold">Student's Name:</span>{{ $outreach->student->name }}</span>
+                    <span><span class="font-semibold">Student's Name:</span>@if(isset($outreach->student)){{ $outreach->student->name }}@endif</span>
                     <span><span class="font-semibold">Date:</span>{{ $outreach->date }}</span>
                 </div>
                 <div class="flex justify-between mb-2">

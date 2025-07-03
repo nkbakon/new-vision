@@ -26,7 +26,7 @@
                 <h1 class="text-center text-xl">Student Self-Assessment Pre-Evaluation</h1>
                 <hr style="height:2px; background-color:#333; border:none;"><br>
                 <div class="flex justify-between mb-2">
-                    <span><span class="font-semibold">Name:</span>{{ $assessment->student->name }}</span>
+                    <span><span class="font-semibold">Name:</span>@if(isset($assessment->student)){{ $assessment->student->name }}@endif</span>
                     <span><span class="font-semibold">Date:</span>{{ $assessment->created_at->format('Y-m-d') }}</span>
                 </div>
                 <div class="flex justify-between mb-2">
