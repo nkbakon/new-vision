@@ -9,10 +9,10 @@
                     <a href="{{ route('students.index') }}" class="px-3 py-1 flex space-x-2 mt-5 rounded-md border border-gray-50 cursor-pointer hover:bg-gray-400 hover:border-gray-500 hover:text-gray-50">Students</a>
                 </li>
                 <li>
-                    <a href="{{ route('consents.index') }}" class="bg-gray-500 border-gray-600 text-white px-3 py-1 flex space-x-2 mt-5 rounded-md border border-gray-50 cursor-pointer hover:bg-gray-400 hover:border-gray-500 hover:text-gray-50">Parental Consent</a>
+                    <a href="{{ route('consents.index') }}" class="px-3 py-1 flex space-x-2 mt-5 rounded-md border border-gray-50 cursor-pointer hover:bg-gray-400 hover:border-gray-500 hover:text-gray-50">Parental Consent</a>
                 </li>
                 <li>
-                    <a href="{{ route('developments.index') }}" class="px-3 py-1 flex space-x-2 mt-5 rounded-md border border-gray-50 cursor-pointer hover:bg-gray-400 hover:border-gray-500 hover:text-gray-50">Individual Development</a>
+                    <a href="{{ route('developments.index') }}" class="bg-gray-500 border-gray-600 text-white px-3 py-1 flex space-x-2 mt-5 rounded-md border border-gray-50 cursor-pointer hover:bg-gray-400 hover:border-gray-500 hover:text-gray-50">Individual Development</a>
                 </li>
             </ul>
         </div>
@@ -39,7 +39,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-gray-100 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900">
-                <a href="{{ route('consents.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-900 focus:bg-blue-900 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 transition ease-in-out duration-150">Add Parental Consent</a><br><br>
+                <a href="{{ route('developments.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-900 focus:bg-blue-900 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 transition ease-in-out duration-150">Add Individual Development</a><br><br>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-700 dark:text-gray-400">
                         <thead class="text-sm text-gray-800 uppercase bg-gray-300 dark:bg-gray-700 dark:text-gray-400">
@@ -48,16 +48,13 @@
                                     Name
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Email
+                                    Enrollment Date
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Date of Birth
+                                    Referred By
                                 </th>                                
                                 <th scope="col" class="py-3 px-6">
-                                    Doctor
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Date
+                                    Mentor/Youth Advisor
                                 </th>
                                 <th scope="col" class="py-3 px-6">
                                     Actions
@@ -65,39 +62,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($consents as $consent)
+                            @foreach($developments as $development)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <td class="py-3 px-6">
-                                    @if(isset($consent->student))
-                                    {{ $consent->student->name }}
+                                    @if(isset($development->student))
+                                    {{ $development->student->name }}
                                     @endif
                                 </td>
                                 <td class="py-3 px-6">
-                                    @if(isset($consent->student))
-                                    {{ $consent->student->student_email }}
-                                    @endif
+                                    {{ $development->enrollment_date }}
                                 </td>
                                 <td class="py-3 px-6">
-                                    @if(isset($consent->student))
-                                    {{ $consent->student->dob }}
-                                    @endif
+                                    {{ $development->referred_by }}
                                 </td>                               
                                 <td class="py-3 px-6">
-                                    {{ $consent->doctor }}
-                                </td>
-                                <td class="py-3 px-6">
-                                    {{ $consent->created_at->format('Y-m-d') }}
+                                    {{ $development->advisor }}
                                 </td>
                                 <td class="py-3 px-6">    
-                                    <a href="{{ route('consents.view', $consent) }}" title="view" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-500 active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition ease-in-out duration-150"><img src="{{ asset('assets/folder_open.svg') }}" alt="View Icon" class="w-3 h-3"></a>                                 
-                                    <a href="{{ route('consents.edit', $consent) }}" title="edit" class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-400 focus:bg-yellow-700 active:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition ease-in-out duration-150"><img src="{{ asset('assets/edit.svg') }}" alt="Edit Icon" class="w-3 h-3"></a> 
-                                    <button type="button" value="{{ $consent->id }}" title="delete" data-modal-toggle="deletePost" class="deleteBtn inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150"><img src="{{ asset('assets/trash.svg') }}" alt="Delete Icon" class="w-3 h-3"></button>                                        
+                                    <a href="{{ route('developments.view', $development) }}" title="view" class="inline-flex items-center px-4 py-2 bg-gray-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-500 active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition ease-in-out duration-150"><img src="{{ asset('assets/folder_open.svg') }}" alt="View Icon" class="w-3 h-3"></a>                                 
+                                    <a href="{{ route('developments.edit', $development) }}" title="edit" class="inline-flex items-center px-4 py-2 bg-yellow-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-400 focus:bg-yellow-700 active:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition ease-in-out duration-150"><img src="{{ asset('assets/edit.svg') }}" alt="Edit Icon" class="w-3 h-3"></a> 
+                                    <button type="button" value="{{ $development->id }}" title="delete" data-modal-toggle="deletePost" class="deleteBtn inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150"><img src="{{ asset('assets/trash.svg') }}" alt="Delete Icon" class="w-3 h-3"></button>                                        
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $consents->links() }}
+                    {{ $developments->links() }}
                 </div>                                                                       
             </div>
         </div>
@@ -113,7 +103,7 @@
                 <span class="sr-only">Close modal</span>
             </button>
             <div class="p-6 text-center">
-                <form method="POST" action="{{ route('consents.destroy', 'data_id') }}">
+                <form method="POST" action="{{ route('developments.destroy', 'data_id') }}">
                     @csrf
                     @method('DELETE')
                     <svg aria-hidden="true" class="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>

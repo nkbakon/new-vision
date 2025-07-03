@@ -11,6 +11,9 @@
                 <li>
                     <a href="{{ route('consents.index') }}" class="px-3 py-1 flex space-x-2 mt-5 rounded-md border border-gray-50 cursor-pointer hover:bg-gray-400 hover:border-gray-500 hover:text-gray-50">Parental Consent</a>
                 </li>
+                <li>
+                    <a href="{{ route('developments.index') }}" class="px-3 py-1 flex space-x-2 mt-5 rounded-md border border-gray-50 cursor-pointer hover:bg-gray-400 hover:border-gray-500 hover:text-gray-50">Individual Development</a>
+                </li>
             </ul>
         </div>
     </div>

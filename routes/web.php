@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AssessmentController;
 use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\ConsentController;
+use \App\Http\Controllers\DevelopmentController;
 use \App\Http\Controllers\EvaluationController;
 use \App\Http\Controllers\LogController;
 use \App\Http\Controllers\MediationController;
@@ -97,6 +98,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('mediations/update/{mediation}', [MediationController::class, 'update'])->name('mediations.update');
     Route::delete('mediations/destroy', [MediationController::class, 'destroy'])->name('mediations.destroy');
     Route::get('mediations/{mediation}/view', [MediationController::class, 'view'])->name('mediations.view');
+
+    Route::get('students/developments/create', [DevelopmentController::class, 'create'])->name('developments.create');
+    Route::post('students/developments/store', [DevelopmentController::class, 'store'])->name('developments.store');
+    Route::get('students/developments', [DevelopmentController::class, 'index'])->name('developments.index');         
+    Route::get('students/developments/edit/{development}', [DevelopmentController::class, 'edit'])->name('developments.edit');
+    Route::put('students/developments/update/{development}', [DevelopmentController::class, 'update'])->name('developments.update');
+    Route::delete('students/developments/destroy', [DevelopmentController::class, 'destroy'])->name('developments.destroy');
+    Route::get('students/developments/{development}/view', [DevelopmentController::class, 'view'])->name('developments.view');
 
     Route::get('evaluations/create', [EvaluationController::class, 'create'])->name('evaluations.create');
     Route::post('evaluations/store', [EvaluationController::class, 'store'])->name('evaluations.store');
