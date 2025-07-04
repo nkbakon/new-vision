@@ -10,6 +10,7 @@ use \App\Http\Controllers\LogController;
 use \App\Http\Controllers\MediationController;
 use \App\Http\Controllers\OutreachController;
 use \App\Http\Controllers\SelectionController;
+use \App\Http\Controllers\SignController;
 use \App\Http\Controllers\StudentController;
 use \App\Http\Controllers\UserController;
 
@@ -75,6 +76,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('selections/destroy', [SelectionController::class, 'destroy'])->name('selections.destroy');
     Route::get('selections/{selection}/view', [SelectionController::class, 'view'])->name('selections.view');
 
+    Route::get('logs/code', [LogController::class, 'code'])->name('logs.code');
     Route::get('logs/create', [LogController::class, 'create'])->name('logs.create');
     Route::post('logs/store', [LogController::class, 'store'])->name('logs.store');
     Route::get('logs', [LogController::class, 'index'])->name('logs.index');         
@@ -99,6 +101,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('mediations/destroy', [MediationController::class, 'destroy'])->name('mediations.destroy');
     Route::get('mediations/{mediation}/view', [MediationController::class, 'view'])->name('mediations.view');
 
+    Route::get('signs/create', [SignController::class, 'create'])->name('signs.create');
+    Route::post('signs/store', [SignController::class, 'store'])->name('signs.store');
+    Route::get('signs', [SignController::class, 'index'])->name('signs.index');         
+    Route::get('signs/edit/{sign}', [SignController::class, 'edit'])->name('signs.edit');
+    Route::put('signs/update/{sign}', [SignController::class, 'update'])->name('signs.update');
+    Route::delete('signs/destroy', [SignController::class, 'destroy'])->name('signs.destroy');
+    Route::get('signs/{sign}/view', [SignController::class, 'view'])->name('signs.view');
+    
     Route::get('students/developments/create', [DevelopmentController::class, 'create'])->name('developments.create');
     Route::post('students/developments/store', [DevelopmentController::class, 'store'])->name('developments.store');
     Route::get('students/developments', [DevelopmentController::class, 'index'])->name('developments.index');         

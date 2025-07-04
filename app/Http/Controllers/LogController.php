@@ -82,4 +82,9 @@ class LogController extends Controller
             return redirect()->route('logs.index')->with('delete', 'No staff action log found!.');
         }    
     }
+
+    public function code()
+    {
+        return view('logs.code');
+    }
 }
