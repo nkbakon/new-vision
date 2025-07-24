@@ -9,6 +9,9 @@
                     <a href="{{ route('students.index') }}" class="px-3 py-1 flex space-x-2 mt-5 rounded-md border border-gray-50 cursor-pointer hover:bg-gray-400 hover:border-gray-500 hover:text-gray-50">Students</a>
                 </li>
                 <li>
+                    <a href="{{ route('schools.index') }}" class="px-3 py-1 flex space-x-2 mt-5 rounded-md border border-gray-50 cursor-pointer hover:bg-gray-400 hover:border-gray-500 hover:text-gray-50">Schools</a>
+                </li>
+                <li>
                     <a href="{{ route('consents.index') }}" class="bg-gray-500 border-gray-600 text-white px-3 py-1 flex space-x-2 mt-5 rounded-md border border-gray-50 cursor-pointer hover:bg-gray-400 hover:border-gray-500 hover:text-gray-50">Parental Consent</a>
                 </li>
                 <li>

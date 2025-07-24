@@ -9,6 +9,7 @@ use \App\Http\Controllers\EvaluationController;
 use \App\Http\Controllers\LogController;
 use \App\Http\Controllers\MediationController;
 use \App\Http\Controllers\OutreachController;
+use \App\Http\Controllers\SchoolController;
 use \App\Http\Controllers\SelectionController;
 use \App\Http\Controllers\SignController;
 use \App\Http\Controllers\StudentController;
@@ -57,6 +58,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('students/consent/update/{consent}', [ConsentController::class, 'update'])->name('consents.update');
     Route::delete('students/consent/destroy', [ConsentController::class, 'destroy'])->name('consents.destroy');
     Route::get('students/consent/{consent}/view', [ConsentController::class, 'view'])->name('consents.view'); 
+
+    Route::get('students/schools/create', [SchoolController::class, 'create'])->name('schools.create');
+    Route::post('students/schools/store', [SchoolController::class, 'store'])->name('schools.store');
+    Route::get('students/schools', [SchoolController::class, 'index'])->name('schools.index');         
+    Route::get('students/schools/edit/{school}', [SchoolController::class, 'edit'])->name('schools.edit');
+    Route::put('students/schools/update/{school}', [SchoolController::class, 'update'])->name('schools.update');
+    Route::delete('students/schools/destroy', [SchoolController::class, 'destroy'])->name('schools.destroy');
+    Route::get('students/schools/{school}/view', [SchoolController::class, 'view'])->name('schools.view');
 
     Route::get('assessments/create', [AssessmentController::class, 'create'])->name('assessments.create');
     Route::post('assessments/store', [AssessmentController::class, 'store'])->name('assessments.store');
