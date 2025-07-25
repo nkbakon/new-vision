@@ -15,12 +15,20 @@
                                 <input type="text" name="name" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="full name" required>
                             </div>
                             @error('name') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
+                            <br>
                             <div>
-                                <label for="school">School</label><br>
-                                <input type="text" name="school" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="school" required>
+                                @php 
+                                    $schools = App\Models\School::all();
+                                @endphp
+                                <label for="school_id">Select School</label><br>
+                                <select name="school_id" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select school from here</option>
+                                    @foreach($schools as $school)
+                                    <option value="{{ $school->id }}">{{ $school->name }} ({{ $school->state }})</option>
+                                    @endforeach
+                                </select> 
                             </div>
-                            @error('school') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('school_id') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
                                 <label for="address">Address</label><br>
@@ -36,7 +44,59 @@
                             <br>
                             <div>
                                 <label for="state">State</label><br>
-                                <input type="text" name="state" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="state" required>
+                                <select name="state" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Alabama">Alabama</option>
+                                    <option value="Alaska">Alaska</option>
+                                    <option value="Arizona">Arizona</option>
+                                    <option value="Arkansas">Arkansas</option>
+                                    <option value="California">California</option>
+                                    <option value="Colorado">Colorado</option>
+                                    <option value="Connecticut">Connecticut</option>
+                                    <option value="Delaware">Delaware</option>
+                                    <option value="Florida">Florida</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Hawaii">Hawaii</option>
+                                    <option value="Idaho">Idaho</option>
+                                    <option value="Illinois">Illinois</option>
+                                    <option value="Indiana">Indiana</option>
+                                    <option value="Iowa">Iowa</option>
+                                    <option value="Kansas">Kansas</option>
+                                    <option value="Kentucky">Kentucky</option>
+                                    <option value="Louisiana">Louisiana</option>
+                                    <option value="Maine">Maine</option>
+                                    <option value="Maryland">Maryland</option>
+                                    <option value="Massachusetts">Massachusetts</option>
+                                    <option value="Michigan">Michigan</option>
+                                    <option value="Minnesota">Minnesota</option>
+                                    <option value="Mississippi">Mississippi</option>
+                                    <option value="Missouri">Missouri</option>
+                                    <option value="Montana">Montana</option>
+                                    <option value="Nebraska">Nebraska</option>
+                                    <option value="Nevada">Nevada</option>
+                                    <option value="New Hampshire">New Hampshire</option>
+                                    <option value="New Jersey">New Jersey</option>
+                                    <option value="New Mexico">New Mexico</option>
+                                    <option value="New York">New York</option>
+                                    <option value="North Carolina">North Carolina</option>
+                                    <option value="North Dakota">North Dakota</option>
+                                    <option value="Ohio">Ohio</option>
+                                    <option value="Oklahoma">Oklahoma</option>
+                                    <option value="Oregon">Oregon</option>
+                                    <option value="Pennsylvania">Pennsylvania</option>
+                                    <option value="Rhode Island">Rhode Island</option>
+                                    <option value="South Carolina">South Carolina</option>
+                                    <option value="South Dakota">South Dakota</option>
+                                    <option value="Tennessee">Tennessee</option>
+                                    <option value="Texas">Texas</option>
+                                    <option value="Utah">Utah</option>
+                                    <option value="Vermont">Vermont</option>
+                                    <option value="Virginia">Virginia</option>
+                                    <option value="Washington">Washington</option>
+                                    <option value="West Virginia">West Virginia</option>
+                                    <option value="Wisconsin">Wisconsin</option>
+                                    <option value="Wyoming">Wyoming</option>
+                                </select>
                             </div>
                             @error('state') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br> 
@@ -47,47 +107,62 @@
                             @error('zip') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
-                                <label for="home_phone">Home Phone</label><br>
-                                <input type="number" name="home_phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="home phone" required>
+                                <label for="phone_type">Phone Type</label><br>
+                                <select name="phone_type" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Home Phone">Home Phone</option>
+                                    <option value="Work Phone">Work Phone</option>
+                                    <option value="Cell Phone">Cell Phone</option>
+                                </select>
                             </div>
-                            @error('home_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('phone_type') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br> 
                             <div>
-                                <label for="work_phone">Work Phone</label><br>
-                                <input type="number" name="work_phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="work phone">
+                                <label for="phone">Phone</label><br>
+                                <input type="number" name="phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="phone number" required>
                             </div>
-                            @error('work_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
-                            <div>
-                                <label for="cell_phone">Cell Phone</label><br>
-                                <input type="number" name="cell_phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="cell phone">
-                            </div>
-                            @error('cell_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
                                 <label for="gender">Gender</label><br>
-                                <input type="text" name="gender" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="gender" required>
+                                <select name="gender" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Non-binary/Genderqueer/Gender Fluid/A-Gender">Non-binary/Genderqueer/Gender Fluid/A-Gender</option>
+                                    <option value="Prefer not to say">Prefer not to say</option>
+                                     <option value="Other">Other</option>
+                                </select>
                             </div>
                             @error('gender') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
                                 <label for="ethnicity">Ethnicity</label><br>
-                                <input type="text" name="ethnicity" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="ethnicity" required>
+                                <select name="ethnicity" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="African American/Black">African American/Black</option>
+                                    <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>
+                                    <option value="Asian">Asian</option>
+                                    <option value="Hispanic or Latino">Hispanic or Latino</option>
+                                    <option value="Middle Eastern or North African">Middle Eastern or North African</option>
+                                    <option value="Native Hawaiian or Pacific Islander">Native Hawaiian or Pacific Islander</option>
+                                    <option value="Caucasian/White">Caucasian/White</option>
+                                </select>
                             </div>
                             @error('ethnicity') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br>
-                            <div>
-                                <label for="age">Age</label><br>
-                                <input type="text" name="age" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="age" required>
-                            </div>
-                            @error('age') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
+                            <br>                            
                             <div>
                                 <label for="dob">Date of Birth</label><br>
-                                <input type="date" name="dob" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="dob" required>
+                                <input type="date" id="dob" name="dob" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="dob" required>
                             </div>
                             @error('dob') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
+                            <div>
+                                <label for="age">Age</label><br>
+                                <input type="text" id="age" name="age" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="age" required>
+                            </div>
+                            @error('age') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>                            
                             <div>
                                 <label for="father">Parents / Legal Guardian (Father)</label><br>
                                 <input type="text" name="father" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents / legal guardian (father)" required>
@@ -96,27 +171,26 @@
                             <br> 
                             <div>
                                 <label for="mother">Parents / Legal Guardian (Mother)</label><br>
-                                <input type="text" name="mother" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents / legal guardian (mother)" required>
+                                <input type="text" name="mother" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents / legal guardian (mother)">
                             </div>
                             @error('mother') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
-                                <label for="parents_home_phone">Parents Home Phone</label><br>
-                                <input type="number" name="parents_home_phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents home phone" required>
+                                <label for="parents_phone_type">Parents / Legal Guardian Phone Type</label><br>
+                                <select name="parents_phone_type" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Home Phone">Home Phone</option>
+                                    <option value="Work Phone">Work Phone</option>
+                                    <option value="Cell Phone">Cell Phone</option>
+                                </select>
                             </div>
-                            @error('parents_home_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
+                            @error('parents_phone_type') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>  
                             <div>
-                                <label for="parents_work_phone">Parents Work Phone</label><br>
-                                <input type="number" name="parents_work_phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents work phone">
+                                <label for="parents_phone">Parents / Legal Guardian Phone</label><br>
+                                <input type="number" name="parents_phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents phone" required>
                             </div>
-                            @error('parents_work_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
-                            <div>
-                                <label for="parents_cell_phone">Parents Cell Phone</label><br>
-                                <input type="number" name="parents_cell_phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents cell phone">
-                            </div>
-                            @error('parents_cell_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('parents_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br> 
                             <div>
                                 <label for="student_lives_with">Name of the Person Student Currently Lives With</label><br>
@@ -141,30 +215,38 @@
                                 <input type="text" name="emergency_contact" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="name of emergency contact" required>
                             </div>
                             @error('emergency_contact') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
+                            <br>
                             <div>
                                 <label for="relationship_to_student">Relationship to Student</label><br>
-                                <input type="text" name="relationship_to_student" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="relationship to student" required>
+                                <select name="relationship_to_student" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Mother">Mother</option>
+                                    <option value="Father">Father</option>
+                                    <option value="Foster Parent">Foster Parent</option>
+                                    <option value="Aunt">Aunt</option>
+                                    <option value="Uncle">Uncle</option>
+                                    <option value="Grandparent">Grandparent</option>
+                                    <option value="Other Relative">Other Relative</option>
+                                </select>
                             </div>
                             @error('relationship_to_student') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
-                                <label for="emergency_home_phone">Emergency Home Phone</label><br>
-                                <input type="number" name="emergency_home_phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="emergency home phone" required>
+                                <label for="emergency_phone_type">Emergency Phone Type</label><br>
+                                <select name="emergency_phone_type" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Home Phone">Home Phone</option>
+                                    <option value="Work Phone">Work Phone</option>
+                                    <option value="Cell Phone">Cell Phone</option>
+                                </select>
                             </div>
-                            @error('emergency_home_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('emergency_phone_type') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br> 
                             <div>
-                                <label for="emergency_work_phone">Emergency Work Phone</label><br>
-                                <input type="number" name="emergency_work_phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="emergency work phone">
+                                <label for="emergency_phone">Emergency Phone</label><br>
+                                <input type="number" name="emergency_phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="emergency phone number">
                             </div>
-                            @error('emergency_work_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
-                            <div>
-                                <label for="emergency_cell_phone">Emergency Cell Phone</label><br>
-                                <input type="number" name="emergency_cell_phone" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="emergency cell phone">
-                            </div>
-                            @error('emergency_cell_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('emergency_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
                                 <label for="guardian_email">Guardian Email Address</label><br>
@@ -333,10 +415,19 @@
                                 <br>
                             </div> 
                             <p class="font-semibold mb-2">Previous Year School Information</p> 
-                            <div class="last_school">
-                                <label for="last_school">Last School Attended</label><br>
-                                <input type="text" name="last_school" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="last school attended">
+                            <div>
+                                @php 
+                                    $schools = App\Models\School::all();
+                                @endphp
+                                <label for="last_school_id">Select Last School Attended</label><br>
+                                <select name="last_school_id" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select school from here</option>
+                                    @foreach($schools as $school)
+                                    <option value="{{ $school->id }}">{{ $school->name }} ({{ $school->state }})</option>
+                                    @endforeach
+                                </select> 
                             </div>
+                            @error('last_school_id') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
                                 <label for="previous_conducts" class="mb-4">Previous school conduct (please check all that apply)</label><br>
@@ -424,5 +515,23 @@
 @endsection
 
 @push('js')
+<script>
+    document.getElementById('dob').addEventListener('change', function () {
+        const dob = new Date(this.value);
+        const today = new Date();
 
+        if (!isNaN(dob)) {
+            let age = today.getFullYear() - dob.getFullYear();
+            const m = today.getMonth() - dob.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            document.getElementById('age').value = age;
+        } else {
+            document.getElementById('age').value = '';
+        }
+    });
+</script>
 @endpush

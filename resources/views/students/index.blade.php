@@ -77,7 +77,9 @@
                                     {{ $student->student_email }}
                                 </td>
                                 <td class="py-3 px-6">
-                                    {{ $student->school }}
+                                    @if(isset($student->school))
+                                    {{ $student->school->name }}
+                                    @endif
                                 </td>                               
                                 <td class="py-3 px-6">
                                     {{ $student->city }}

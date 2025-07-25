@@ -25,7 +25,7 @@ class StudentController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'school' => 'required',
+            'school_id' => 'required',
         ]);
 
         $lives = json_encode($request->lives);
@@ -35,31 +35,28 @@ class StudentController extends Controller
 
         $student = new Student();
         $student->name = $request->name;
-        $student->school = $request->school;
+        $student->school_id = $request->school_id;
         $student->address = $request->address;
         $student->city = $request->city;
         $student->state = $request->state;
         $student->zip = $request->zip;
-        $student->home_phone = $request->home_phone;
-        $student->work_phone = $request->work_phone;
-        $student->cell_phone = $request->cell_phone;
+        $student->phone_type = $request->phone_type;
+        $student->phone = $request->phone;
         $student->gender = $request->gender;
         $student->ethnicity = $request->ethnicity;
-        $student->age = $request->age;
         $student->dob = $request->dob;
+        $student->age = $request->age;        
         $student->father = $request->father;
         $student->mother = $request->mother;
-        $student->parents_home_phone = $request->parents_home_phone;
-        $student->parents_work_phone = $request->parents_work_phone;
-        $student->parents_cell_phone = $request->parents_cell_phone;
+        $student->parents_phone_type = $request->parents_phone_type;
+        $student->parents_phone = $request->parents_phone;
         $student->student_lives_with = $request->student_lives_with;
         $student->gpa = $request->gpa;
         $student->counselor = $request->counselor;
         $student->emergency_contact = $request->emergency_contact;
         $student->relationship_to_student = $request->relationship_to_student;
-        $student->emergency_home_phone = $request->emergency_home_phone;
-        $student->emergency_work_phone = $request->emergency_work_phone;
-        $student->emergency_cell_phone = $request->emergency_cell_phone;
+        $student->emergency_phone_type = $request->emergency_phone_type;
+        $student->emergency_phone = $request->emergency_phone;
         $student->guardian_email = $request->guardian_email;
         $student->student_email = $request->student_email;
         $student->lives = $lives;
@@ -70,7 +67,7 @@ class StudentController extends Controller
         $student->explain_incarcerated = $request->explain_incarcerated;
         $student->events = $events;
         $student->other_infos = $other_infos;
-        $student->last_school = $request->last_school;
+        $student->last_school_id = $request->last_school_id;
         $student->previous_conducts = $previous_conducts;
         $student->suspended_time = $request->suspended_time;
         $student->ever_expelled = $request->ever_expelled;
@@ -115,7 +112,7 @@ class StudentController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'school' => 'required',
+            'school_id' => 'required',
         ]);
 
         $lives = json_encode($request->lives);
@@ -124,31 +121,28 @@ class StudentController extends Controller
         $previous_conducts = json_encode($request->previous_conducts);
 
         $student->name = $request->name;
-        $student->school = $request->school;
+        $student->school_id = $request->school_id;
         $student->address = $request->address;
         $student->city = $request->city;
         $student->state = $request->state;
         $student->zip = $request->zip;
-        $student->home_phone = $request->home_phone;
-        $student->work_phone = $request->work_phone;
-        $student->cell_phone = $request->cell_phone;
+        $student->phone_type = $request->phone_type;
+        $student->phone = $request->phone;
         $student->gender = $request->gender;
         $student->ethnicity = $request->ethnicity;
-        $student->age = $request->age;
         $student->dob = $request->dob;
+        $student->age = $request->age;        
         $student->father = $request->father;
         $student->mother = $request->mother;
-        $student->parents_home_phone = $request->parents_home_phone;
-        $student->parents_work_phone = $request->parents_work_phone;
-        $student->parents_cell_phone = $request->parents_cell_phone;
+        $student->parents_phone_type = $request->parents_phone_type;
+        $student->parents_phone = $request->parents_phone;
         $student->student_lives_with = $request->student_lives_with;
         $student->gpa = $request->gpa;
         $student->counselor = $request->counselor;
         $student->emergency_contact = $request->emergency_contact;
         $student->relationship_to_student = $request->relationship_to_student;
-        $student->emergency_home_phone = $request->emergency_home_phone;
-        $student->emergency_work_phone = $request->emergency_work_phone;
-        $student->emergency_cell_phone = $request->emergency_cell_phone;
+        $student->emergency_phone_type = $request->emergency_phone_type;
+        $student->emergency_phone = $request->emergency_phone;
         $student->guardian_email = $request->guardian_email;
         $student->student_email = $request->student_email;
         $student->lives = $lives;
@@ -159,7 +153,7 @@ class StudentController extends Controller
         $student->explain_incarcerated = $request->explain_incarcerated;
         $student->events = $events;
         $student->other_infos = $other_infos;
-        $student->last_school = $request->last_school;
+        $student->last_school_id = $request->last_school_id;
         $student->previous_conducts = $previous_conducts;
         $student->suspended_time = $request->suspended_time;
         $student->ever_expelled = $request->ever_expelled;

@@ -30,20 +30,24 @@
                     <span><span class="font-semibold">Date:</span>{{ $student->created_at->format('Y-m-d') }}</span>
                 </div>
                 <div class="flex justify-between mb-2">
-                    <span><span class="font-semibold">School:</span>{{ $student->school }}</span>
+                    <span>
+                        <span class="font-semibold">School:</span>
+                        @if(isset($student->school))
+                        {{ $student->school->name }}
+                        @endif
+                    </span>
                     <span><span class="font-semibold">Address:</span>{{ $student->address }}</span>
                 </div>
                 <div class="flex justify-between mb-2">
                     <span><span class="font-semibold">City:</span>{{ $student->city }}</span>
                     <span><span class="font-semibold">State:</span>{{ $student->state }}</span>
                 </div>
-                <div class="flex justify-between mb-2">
+                <div class="flex justify-between mb-2">                    
+                    <span><span class="font-semibold">Phone Type:</span>{{ $student->phone_type }}</span>
                     <span><span class="font-semibold">Zip:</span>{{ $student->zip }}</span>
-                    <span><span class="font-semibold">Home Phone:</span>{{ $student->home_phone }}</span>
                 </div>
                 <div class="flex justify-between mb-2">
-                    <span><span class="font-semibold">Work Phone:</span>{{ $student->work_phone }}</span>
-                    <span><span class="font-semibold">Cell Phone:</span>{{ $student->cell_phone }}</span>
+                    <span><span class="font-semibold">Phone:</span>{{ $student->phone }}</span>
                 </div>
                 <div class="flex justify-between mb-2">
                     <span><span class="font-semibold">Gender:</span>{{ $student->gender }}</span>
@@ -58,11 +62,10 @@
                     <span><span class="font-semibold">Parents / Legal Guardian (Mother):</span>{{ $student->mother }}</span>
                 </div>
                 <div class="flex justify-between mb-2">
-                    <span><span class="font-semibold">Parents Home Phone:</span>{{ $student->parents_home_phone }}</span>
-                    <span><span class="font-semibold">Parents Work Phone:</span>{{ $student->parents_work_phone }}</span>
+                    <span><span class="font-semibold">Parents / Legal Guardian Phone Type:</span>{{ $student->parents_phone_type }}</span>
                 </div>
                 <div class="flex justify-between mb-2">
-                    <span><span class="font-semibold">Parents Cell Phone:</span>{{ $student->parents_cell_phone }}</span>
+                    <span><span class="font-semibold">Parents / Legal Guardian Phone:</span>{{ $student->parents_phone }}</span>
                     <span><span class="font-semibold">Name of the Person Student Currently Lives With:</span>{{ $student->student_lives_with }}</span>
                 </div>
                 <div class="flex justify-between mb-2">
@@ -74,11 +77,10 @@
                     <span><span class="font-semibold">Relationship to Student:</span>{{ $student->relationship_to_student }}</span>
                 </div>
                 <div class="flex justify-between mb-2">
-                    <span><span class="font-semibold">Emergency Home Phone:</span>{{ $student->emergency_home_phone }}</span>
-                    <span><span class="font-semibold">Emergency Work Phone:</span>{{ $student->emergency_work_phone }}</span>
+                    <span><span class="font-semibold">Emergency Phone Type:</span>{{ $student->emergency_phone_type }}</span>
                 </div>
                 <div class="flex justify-between mb-2">
-                    <span><span class="font-semibold">Emergency Cell Phone:</span>{{ $student->emergency_cell_phone }}</span>
+                    <span><span class="font-semibold">Emergency Phone:</span>{{ $student->emergency_phone }}</span>
                     <span><span class="font-semibold">Guardian Email Address:</span>{{ $student->guardian_email }}</span>
                 </div>
                 <div class="flex justify-between mb-2">
@@ -150,7 +152,12 @@
 
                 <p class="font-semibold mb-2">Previous Year School Information</p>
                 <div class="flex justify-between mb-2">
-                    <span><span class="font-semibold">Last School Attended:</span>{{ $student->last_school }}</span>
+                    <span>
+                        <span class="font-semibold">Last School Attended:</span>
+                        @if(isset($student->last_school))
+                        {{ $student->last_school->name }}
+                        @endif
+                    </span>
                 </div>
                 <br> 
 

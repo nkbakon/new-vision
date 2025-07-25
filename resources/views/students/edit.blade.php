@@ -18,10 +18,18 @@
                             @error('name') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br> 
                             <div>
-                                <label for="school">School</label><br>
-                                <input type="text" name="school" value="{{ $student->school }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="school" required>
+                                @php 
+                                    $schools = App\Models\School::all();
+                                @endphp
+                                <label for="school_id">Select School</label><br>
+                                <select name="school_id" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select school from here</option>
+                                    @foreach($schools as $school)
+                                    <option value="{{ $school->id }}" @if($student->school_id == $school->id) selected @endif>{{ $school->name }} ({{ $school->state }})</option>
+                                    @endforeach
+                                </select> 
                             </div>
-                            @error('school') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('school_id') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
                                 <label for="address">Address</label><br>
@@ -37,7 +45,59 @@
                             <br>
                             <div>
                                 <label for="state">State</label><br>
-                                <input type="text" name="state" value="{{ $student->state }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="state" required>
+                                <select name="state" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Alabama" @if($student->state == 'Alabama') selected @endif>Alabama</option>
+                                    <option value="Alaska" @if($student->state == 'Alaska') selected @endif>Alaska</option>
+                                    <option value="Arizona" @if($student->state == 'Arizona') selected @endif>Arizona</option>
+                                    <option value="Arkansas" @if($student->state == 'Arkansas') selected @endif>Arkansas</option>
+                                    <option value="California" @if($student->state == 'California') selected @endif>California</option>
+                                    <option value="Colorado" @if($student->state == 'Colorado') selected @endif>Colorado</option>
+                                    <option value="Connecticut" @if($student->state == 'Connecticut') selected @endif>Connecticut</option>
+                                    <option value="Delaware" @if($student->state == 'Delaware') selected @endif>Delaware</option>
+                                    <option value="Florida" @if($student->state == 'Florida') selected @endif>Florida</option>
+                                    <option value="Georgia" @if($student->state == 'Georgia') selected @endif>Georgia</option>
+                                    <option value="Hawaii" @if($student->state == 'Hawaii') selected @endif>Hawaii</option>
+                                    <option value="Idaho" @if($student->state == 'Idaho') selected @endif>Idaho</option>
+                                    <option value="Illinois" @if($student->state == 'Illinois') selected @endif>Illinois</option>
+                                    <option value="Indiana" @if($student->state == 'Indiana') selected @endif>Indiana</option>
+                                    <option value="Iowa" @if($student->state == 'Iowa') selected @endif>Iowa</option>
+                                    <option value="Kansas" @if($student->state == 'Kansas') selected @endif>Kansas</option>
+                                    <option value="Kentucky" @if($student->state == 'Kentucky') selected @endif>Kentucky</option>
+                                    <option value="Louisiana" @if($student->state == 'Louisiana') selected @endif>Louisiana</option>
+                                    <option value="Maine" @if($student->state == 'Maine') selected @endif>Maine</option>
+                                    <option value="Maryland" @if($student->state == 'Maryland') selected @endif>Maryland</option>
+                                    <option value="Massachusetts" @if($student->state == 'Massachusetts') selected @endif>Massachusetts</option>
+                                    <option value="Michigan" @if($student->state == 'Michigan') selected @endif>Michigan</option>
+                                    <option value="Minnesota" @if($student->state == 'Minnesota') selected @endif>Minnesota</option>
+                                    <option value="Mississippi" @if($student->state == 'Mississippi') selected @endif>Mississippi</option>
+                                    <option value="Missouri" @if($student->state == 'Missouri') selected @endif>Missouri</option>
+                                    <option value="Montana" @if($student->state == 'Montana') selected @endif>Montana</option>
+                                    <option value="Nebraska" @if($student->state == 'Nebraska') selected @endif>Nebraska</option>
+                                    <option value="Nevada" @if($student->state == 'Nevada') selected @endif>Nevada</option>
+                                    <option value="New Hampshire" @if($student->state == 'New Hampshire') selected @endif>New Hampshire</option>
+                                    <option value="New Jersey" @if($student->state == 'New Jersey') selected @endif>New Jersey</option>
+                                    <option value="New Mexico" @if($student->state == 'New Mexico') selected @endif>New Mexico</option>
+                                    <option value="New York" @if($student->state == 'New York') selected @endif>New York</option>
+                                    <option value="North Carolina" @if($student->state == 'North Carolina') selected @endif>North Carolina</option>
+                                    <option value="North Dakota" @if($student->state == 'North Dakota') selected @endif>North Dakota</option>
+                                    <option value="Ohio" @if($student->state == 'Ohio') selected @endif>Ohio</option>
+                                    <option value="Oklahoma" @if($student->state == 'Oklahoma') selected @endif>Oklahoma</option>
+                                    <option value="Oregon" @if($student->state == 'Oregon') selected @endif>Oregon</option>
+                                    <option value="Pennsylvania" @if($student->state == 'Pennsylvania') selected @endif>Pennsylvania</option>
+                                    <option value="Rhode Island" @if($student->state == 'Rhode Island') selected @endif>Rhode Island</option>
+                                    <option value="South Carolina" @if($student->state == 'South Carolina') selected @endif>South Carolina</option>
+                                    <option value="South Dakota" @if($student->state == 'South Dakota') selected @endif>South Dakota</option>
+                                    <option value="Tennessee" @if($student->state == 'Tennessee') selected @endif>Tennessee</option>
+                                    <option value="Texas" @if($student->state == 'Texas') selected @endif>Texas</option>
+                                    <option value="Utah" @if($student->state == 'Utah') selected @endif>Utah</option>
+                                    <option value="Vermont" @if($student->state == 'Vermont') selected @endif>Vermont</option>
+                                    <option value="Virginia" @if($student->state == 'Virginia') selected @endif>Virginia</option>
+                                    <option value="Washington" @if($student->state == 'Washington') selected @endif>Washington</option>
+                                    <option value="West Virginia" @if($student->state == 'West Virginia') selected @endif>West Virginia</option>
+                                    <option value="Wisconsin" @if($student->state == 'Wisconsin') selected @endif>Wisconsin</option>
+                                    <option value="Wyoming" @if($student->state == 'Wyoming') selected @endif>Wyoming</option>
+                                </select>
                             </div>
                             @error('state') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br> 
@@ -48,46 +108,61 @@
                             @error('zip') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
-                                <label for="home_phone">Home Phone</label><br>
-                                <input type="number" name="home_phone" value="{{ $student->home_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="home phone" required>
+                                <label for="phone_type">Phone Type</label><br>
+                                <select name="phone_type" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Home Phone" @if($student->phone_type == 'Home Phone') selected @endif>Home Phone</option>
+                                    <option value="Work Phone" @if($student->phone_type == 'Work Phone') selected @endif>Work Phone</option>
+                                    <option value="Cell Phone" @if($student->phone_type == 'Cell Phone') selected @endif>Cell Phone</option>
+                                </select>
                             </div>
-                            @error('home_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('phone_type') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br> 
                             <div>
-                                <label for="work_phone">Work Phone</label><br>
-                                <input type="number" name="work_phone" value="{{ $student->work_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="work phone">
+                                <label for="phone">Phone</label><br>
+                                <input type="number" name="phone" value="{{ $student->phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="phone number">
                             </div>
-                            @error('work_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
-                            <div>
-                                <label for="cell_phone">Cell Phone</label><br>
-                                <input type="number" name="cell_phone" value="{{ $student->cell_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="cell phone">
-                            </div>
-                            @error('cell_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
                                 <label for="gender">Gender</label><br>
-                                <input type="text" name="gender" value="{{ $student->gender }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="gender" required>
+                                <select name="gender" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Male" @if($student->gender == 'Male') selected @endif>Male</option>
+                                    <option value="Female" @if($student->gender == 'Female') selected @endif>Female</option>
+                                    <option value="Non-binary/Genderqueer/Gender Fluid/A-Gender" @if($student->gender == 'Non-binary/Genderqueer/Gender Fluid/A-Gender') selected @endif>Non-binary/Genderqueer/Gender Fluid/A-Gender</option>
+                                    <option value="Prefer not to say" @if($student->gender == 'Prefer not to say') selected @endif>Prefer not to say</option>
+                                     <option value="Other" @if($student->gender == 'Other') selected @endif>Other</option>
+                                </select>
                             </div>
                             @error('gender') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
                                 <label for="ethnicity">Ethnicity</label><br>
-                                <input type="text" name="ethnicity" value="{{ $student->ethnicity }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="ethnicity" required>
+                                <select name="ethnicity" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="African American/Black" @if($student->ethnicity == 'African American/Black') selected @endif>African American/Black</option>
+                                    <option value="American Indian or Alaska Native" @if($student->ethnicity == 'American Indian or Alaska Native') selected @endif>American Indian or Alaska Native</option>
+                                    <option value="Asian" @if($student->ethnicity == 'Asian') selected @endif>Asian</option>
+                                    <option value="Hispanic or Latino" @if($student->ethnicity == 'Hispanic or Latino') selected @endif>Hispanic or Latino</option>
+                                    <option value="Middle Eastern or North African" @if($student->ethnicity == 'Middle Eastern or North African') selected @endif>Middle Eastern or North African</option>
+                                    <option value="Native Hawaiian or Pacific Islander" @if($student->ethnicity == 'Native Hawaiian or Pacific Islander') selected @endif>Native Hawaiian or Pacific Islander</option>
+                                    <option value="Caucasian/White" @if($student->ethnicity == 'Caucasian/White') selected @endif>Caucasian/White</option>
+                                </select>
                             </div>
                             @error('ethnicity') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
-                                <label for="age">Age</label><br>
-                                <input type="text" name="age" value="{{ $student->age }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="age" required>
-                            </div>
-                            @error('age') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
-                            <div>
                                 <label for="dob">Date of Birth</label><br>
-                                <input type="date" name="dob" value="{{ $student->dob }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="dob" required>
+                                <input type="date" id="dob" name="dob" value="{{ $student->dob }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="dob" required>
                             </div>
                             @error('dob') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>
+                            <div>
+                                <label for="age">Age</label><br>
+                                <input type="text" id="age" name="age" value="{{ $student->age }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="age" required>
+                            </div>
+                            @error('age') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
                                 <label for="father">Parents / Legal Guardian (Father)</label><br>
@@ -97,27 +172,26 @@
                             <br> 
                             <div>
                                 <label for="mother">Parents / Legal Guardian (Mother)</label><br>
-                                <input type="text" name="mother" value="{{ $student->mother }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents / legal guardian (mother)" required>
+                                <input type="text" name="mother" value="{{ $student->mother }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents / legal guardian (mother)">
                             </div>
                             @error('mother') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
-                                <label for="parents_home_phone">Parents Home Phone</label><br>
-                                <input type="number" name="parents_home_phone" value="{{ $student->parents_home_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents home phone" required>
+                                <label for="parents_phone_type">Parents / Legal Guardian Phone Type</label><br>
+                                <select name="parents_phone_type" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Home Phone" @if($student->parents_phone_type == 'Home Phone') selected @endif>Home Phone</option>
+                                    <option value="Work Phone" @if($student->parents_phone_type == 'Work Phone') selected @endif>Work Phone</option>
+                                    <option value="Cell Phone" @if($student->parents_phone_type == 'Cell Phone') selected @endif>Cell Phone</option>
+                                </select>
                             </div>
-                            @error('parents_home_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
+                            @error('parents_phone_type') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            <br>  
                             <div>
-                                <label for="parents_work_phone">Parents Work Phone</label><br>
-                                <input type="number" name="parents_work_phone" value="{{ $student->parents_work_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents work phone">
+                                <label for="parents_phone">Parents / Legal Guardian Phone</label><br>
+                                <input type="number" name="parents_phone" value="{{ $student->parents_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents phone" required>
                             </div>
-                            @error('parents_work_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
-                            <div>
-                                <label for="parents_cell_phone">Parents Cell Phone</label><br>
-                                <input type="number" name="parents_cell_phone" value="{{ $student->parents_cell_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="parents cell phone">
-                            </div>
-                            @error('parents_cell_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('parents_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br> 
                             <div>
                                 <label for="student_lives_with">Name of the Person Student Currently Lives With</label><br>
@@ -145,27 +219,35 @@
                             <br> 
                             <div>
                                 <label for="relationship_to_student">Relationship to Student</label><br>
-                                <input type="text" name="relationship_to_student" value="{{ $student->relationship_to_student }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="relationship to student" required>
+                                <select name="relationship_to_student" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Mother" @if($student->relationship_to_student == 'Mother') selected @endif>Mother</option>
+                                    <option value="Father" @if($student->relationship_to_student == 'Father') selected @endif>Father</option>
+                                    <option value="Foster Parent" @if($student->relationship_to_student == 'Foster Parent') selected @endif>Foster Parent</option>
+                                    <option value="Aunt" @if($student->relationship_to_student == 'Aunt') selected @endif>Aunt</option>
+                                    <option value="Uncle" @if($student->relationship_to_student == 'Uncle') selected @endif>Uncle</option>
+                                    <option value="Grandparent" @if($student->relationship_to_student == 'Grandparent') selected @endif>Grandparent</option>
+                                    <option value="Other Relative" @if($student->relationship_to_student == 'Other Relative') selected @endif>Other Relative</option>
+                                </select>
                             </div>
                             @error('relationship_to_student') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
-                                <label for="emergency_home_phone">Emergency Home Phone</label><br>
-                                <input type="number" name="emergency_home_phone" value="{{ $student->emergency_home_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="emergency home phone" required>
+                                <label for="emergency_phone_type">Emergency Phone Type</label><br>
+                                <select name="emergency_phone_type" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select from here</option>
+                                    <option value="Home Phone" @if($student->emergency_phone_type == 'Home Phone') selected @endif>Home Phone</option>
+                                    <option value="Work Phone" @if($student->emergency_phone_type == 'Work Phone') selected @endif>Work Phone</option>
+                                    <option value="Cell Phone" @if($student->emergency_phone_type == 'Cell Phone') selected @endif>Cell Phone</option>
+                                </select>
                             </div>
-                            @error('emergency_home_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('emergency_phone_type') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br> 
                             <div>
-                                <label for="emergency_work_phone">Emergency Work Phone</label><br>
-                                <input type="number" name="emergency_work_phone" value="{{ $student->emergency_work_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="emergency work phone">
+                                <label for="emergency_phone">Emergency Phone</label><br>
+                                <input type="number" name="emergency_phone" value="{{ $student->emergency_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="emergency phone number">
                             </div>
-                            @error('emergency_work_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
-                            <br> 
-                            <div>
-                                <label for="emergency_cell_phone">Emergency Cell Phone</label><br>
-                                <input type="number" name="emergency_cell_phone" value="{{ $student->emergency_cell_phone }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="emergency cell phone">
-                            </div>
-                            @error('emergency_cell_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
+                            @error('emergency_phone') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
                                 <label for="guardian_email">Guardian Email Address</label><br>
@@ -410,11 +492,20 @@
                                 </div>
                                 <br>
                             </div> 
-                            <p class="font-semibold mb-2">Previous Year School Information</p> 
-                            <div class="last_school">
-                                <label for="last_school">Last School Attended</label><br>
-                                <input type="text" name="last_school" value="{{ $student->last_school }}" class="disabled:opacity-50 block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="last school attended">
+                            <p class="font-semibold mb-2">Previous Year School Information</p>
+                            <div>
+                                @php 
+                                    $schools = App\Models\School::all();
+                                @endphp
+                                <label for="last_school_id">Select Last School Attended</label><br>
+                                <select name="last_school_id" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                    <option value="" selected disabled>Select school from here</option>
+                                    @foreach($schools as $school)
+                                    <option value="{{ $school->id }}" @if($student->last_school_id == $school->id) selected @endif>{{ $school->name }} ({{ $school->state }})</option>
+                                    @endforeach
+                                </select> 
                             </div>
+                            @error('last_school_id') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                             <br>
                             <div>
                                 @php 
@@ -519,6 +610,26 @@
 @endsection
 
 @push('js')
+<script>
+    document.getElementById('dob').addEventListener('change', function () {
+        const dob = new Date(this.value);
+        const today = new Date();
+
+        if (!isNaN(dob)) {
+            let age = today.getFullYear() - dob.getFullYear();
+            const m = today.getMonth() - dob.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+
+            document.getElementById('age').value = age;
+        } else {
+            document.getElementById('age').value = '';
+        }
+    });
+</script>
+
 <script>
     $('#removesignature').on('click', function()
     {
