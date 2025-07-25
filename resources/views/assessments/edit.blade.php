@@ -126,51 +126,135 @@
                                 <div class="flex flex-wrap text-sm">
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="cooperative">I am cooperative with teachers</label><br>
-                                        <input type="text" name="cooperative" value="{{ $assessment->cooperative }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i am cooperative with teachers">
+                                        <select name="cooperative" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->cooperative == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->cooperative == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->cooperative == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->cooperative == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->cooperative == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select> 
                                     </div>
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="grades_fine">My grades are fine</label><br>
-                                        <input type="text" name="grades_fine" value="{{ $assessment->grades_fine }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="my grades are fine">
+                                        <select name="grades_fine" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->grades_fine == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->grades_fine == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->grades_fine == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->grades_fine == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->grades_fine == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select> 
                                     </div>
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="school_attitude">I have a positive attitude about school</label><br>
-                                        <input type="text" name="school_attitude" value="{{ $assessment->school_attitude }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i have a positive attitude about school">
+                                        <select name="school_attitude" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->school_attitude == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->school_attitude == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->school_attitude == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->school_attitude == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->school_attitude == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select>
                                     </div>
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="interested_in_education">I am interested in education</label><br>
-                                        <input type="text" name="interested_in_education" value="{{ $assessment->interested_in_education }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i am interested in education">
+                                        <select name="interested_in_education" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->interested_in_education == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->interested_in_education == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->interested_in_education == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->interested_in_education == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->interested_in_education == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select>
                                     </div>
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="work_well_with_students">I work well with other students</label><br>
-                                        <input type="text" name="work_well_with_students" value="{{ $assessment->work_well_with_students }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i work well with other students">
+                                        <select name="work_well_with_students" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->work_well_with_students == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->work_well_with_students == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->work_well_with_students == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->work_well_with_students == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->work_well_with_students == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select>
                                     </div>
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="satisfied_with_friends">I am satisfied with my friends</label><br>
-                                        <input type="text" name="satisfied_with_friends" value="{{ $assessment->satisfied_with_friends }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i am satisfied with my friends">
+                                        <select name="satisfied_with_friends" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->satisfied_with_friends == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->satisfied_with_friends == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->satisfied_with_friends == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->satisfied_with_friends == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->satisfied_with_friends == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select>
                                     </div>
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="do_homework">I do my homework regularly</label><br>
-                                        <input type="text" name="do_homework" value="{{ $assessment->do_homework }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i do my homework regularly">
+                                        <select name="do_homework" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->do_homework == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->do_homework == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->do_homework == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->do_homework == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->do_homework == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select>
                                     </div>
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="life_attitude">I have positive attitude about life</label><br>
-                                        <input type="text" name="life_attitude" value="{{ $assessment->life_attitude }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i have positive attitude about life">
+                                        <select name="life_attitude" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->life_attitude == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->life_attitude == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->life_attitude == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->life_attitude == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->life_attitude == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select>
                                     </div>
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="dont_hang_street">I do not hang out in the streets often</label><br>
-                                        <input type="text" name="dont_hang_street" value="{{ $assessment->dont_hang_street }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i do not hang out in the streets often">
+                                        <select name="dont_hang_street" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->dont_hang_street == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->dont_hang_street == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->dont_hang_street == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->dont_hang_street == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->dont_hang_street == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select>
                                     </div>
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="cooperative_with_parent">I am cooperative with my parent(s)</label><br>
-                                        <input type="text" name="cooperative_with_parent" value="{{ $assessment->cooperative_with_parent }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i am cooperative with my parent(s)">
+                                        <select name="cooperative_with_parent" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->cooperative_with_parent == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->cooperative_with_parent == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->cooperative_with_parent == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->cooperative_with_parent == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->cooperative_with_parent == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select>
                                     </div>
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="dont_get_trouble">I do not get in trouble often</label><br>
-                                        <input type="text" name="dont_get_trouble" value="{{ $assessment->dont_get_trouble }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i do not get in trouble often">
+                                        <select name="dont_get_trouble" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->dont_get_trouble == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->dont_get_trouble == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->dont_get_trouble == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->dont_get_trouble == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->dont_get_trouble == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select>
                                     </div>
                                     <div class="w-1/3 p-2 items-center">
                                         <label for="getting_job">I am interested in getting a good job someday</label><br>
-                                        <input type="text" name="getting_job" value="{{ $assessment->getting_job }}" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="i am interested in getting a good job someday">
+                                        <select name="getting_job" class="block w-64 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                            <option value="" selected disabled>Select from here</option>
+                                            <option value="Strongly Agree" @if($assessment->getting_job == 'Strongly Agree') selected @endif>Strongly Agree</option>
+                                            <option value="Agree" @if($assessment->getting_job == 'Agree') selected @endif>Agree</option>
+                                            <option value="No Opinion" @if($assessment->getting_job == 'No Opinion') selected @endif>No Opinion</option>
+                                            <option value="Disagree" @if($assessment->getting_job == 'Disagree') selected @endif>Disagree</option>
+                                            <option value="Strongly Disagree" @if($assessment->getting_job == 'Strongly Disagree') selected @endif>Strongly Disagree</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <br>
