@@ -34,7 +34,19 @@
                         <br>
                         <div>
                             <label for="referred_by">Referred By</label><br>
-                            <input type="text" name="referred_by" value="{{ $development->referred_by }}" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="referred by" required>
+                            <select name="referred_by" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                <option value="" selected disabled>Select from here</option>
+                                <option value="Baltimore City Police Dept" @if($development->referred_by == 'Baltimore City Police Dept') selected @endif>Baltimore City Police Dept</option>
+                                <option value="Baltimore City Public Schools" @if($development->referred_by == 'Baltimore City Public Schools') selected @endif>Baltimore City Public Schools</option>
+                                <option value="Community Organization" @if($development->referred_by == 'Community Organization') selected @endif>Community Organization</option>
+                                <option value="Dept of Juvenile Services" @if($development->referred_by == 'Dept of Juvenile Services') selected @endif>Dept of Juvenile Services</option>
+                                <option value="Dept of Social Services" @if($development->referred_by == 'Dept of Social Services') selected @endif>Dept of Social Services</option>
+                                <option value="Family Member" @if($development->referred_by == 'Family Member') selected @endif>Family Member</option>
+                                <option value="Group Home" @if($development->referred_by == 'Group Home') selected @endif>Group Home</option>
+                                <option value="Juvenile Court Early Intervention" @if($development->referred_by == 'Juvenile Court Early Intervention') selected @endif>Juvenile Court Early Intervention</option>
+                                <option value="Self-Referral" @if($development->referred_by == 'Self-Referral') selected @endif>Self-Referral</option>
+                                <option value="Other" @if($development->referred_by == 'Other') selected @endif>Other</option>
+                            </select>
                         </div>
                         @error('referred_by') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                         <br>
@@ -166,6 +178,7 @@
                                 <option value="" selected disabled>Select from here</option>
                                 <option value="1" @if($development->was_goal === 1) selected @endif>Yes</option>
                                 <option value="2" @if($development->was_goal === 2) selected @endif>No</option>
+                                <option value="3" @if($development->was_goal === 3) selected @endif>In progress</option>
                             </select> 
                         </div>
                         @error('was_goal') <span class="text-red-500 error">{{ $message }}</span><br> @enderror

@@ -87,8 +87,10 @@
                     <span><span class="font-semibold">Was Goal Achieved:</span>
                         @if($development->was_goal == '1')
                         Yes
-                        @else
+                        @elseif($development->was_goal == '2')
                         No
+                        @else
+                        In progress
                         @endif
                     </span>
                 </div>

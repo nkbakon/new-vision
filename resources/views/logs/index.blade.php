@@ -34,9 +34,6 @@
                                 </th>                                
                                 <th scope="col" class="py-3 px-6">
                                     Youth Advisor/Team
-                                </th>                                
-                                <th scope="col" class="py-3 px-6">
-                                    Outcome/Result
                                 </th>
                                 <th scope="col" class="py-3 px-6">
                                     Length
@@ -59,10 +56,7 @@
                                 </td>
                                 <td class="py-3 px-6">
                                     {{ $log->advisor }}
-                                </td>
-                                <td class="py-3 px-6">
-                                    {{ $log->result }}
-                                </td>                               
+                                </td>                             
                                 <td class="py-3 px-6">
                                     {{ $log->length }}
                                 </td>

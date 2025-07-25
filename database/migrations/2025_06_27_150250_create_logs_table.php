@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
-            $table->string('action')->nullable();
             $table->string('advisor')->nullable();
-            $table->string('result')->nullable();
             $table->string('length')->nullable();
             $table->integer('participant')->comment("1 => Yes 2 => No");
             $table->timestamps();

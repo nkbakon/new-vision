@@ -33,7 +33,19 @@
                         <br>
                         <div>
                             <label for="referred_by">Referred By</label><br>
-                            <input type="text" name="referred_by" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="referred by" required>
+                            <select name="referred_by" class="block w-96 appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" required>
+                                <option value="" selected disabled>Select from here</option>
+                                <option value="Baltimore City Police Dept">Baltimore City Police Dept</option>
+                                <option value="Baltimore City Public Schools">Baltimore City Public Schools</option>
+                                <option value="Community Organization">Community Organization</option>
+                                <option value="Dept of Juvenile Services">Dept of Juvenile Services</option>
+                                <option value="Dept of Social Services">Dept of Social Services</option>
+                                <option value="Family Member">Family Member</option>
+                                <option value="Group Home">Group Home</option>
+                                <option value="Juvenile Court Early Intervention">Juvenile Court Early Intervention</option>
+                                <option value="Self-Referral">Self-Referral</option>
+                                <option value="Other">Other</option>
+                            </select>
                         </div>
                         @error('referred_by') <span class="text-red-500 error">{{ $message }}</span><br> @enderror
                         <br>
@@ -159,6 +171,7 @@
                                 <option value="" selected disabled>Select from here</option>
                                 <option value="1">Yes</option>
                                 <option value="2">No</option>
+                                <option value="3">In progress</option>
                             </select> 
                         </div>
                         @error('was_goal') <span class="text-red-500 error">{{ $message }}</span><br> @enderror

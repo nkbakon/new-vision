@@ -26,11 +26,12 @@ class LogController extends Controller
             'student_id' => 'required',
         ]);
 
+        $actions= json_encode($request->actions);
+
         $log = new Log();
         $log->student_id = $request->student_id;
-        $log->action = $request->action;
+        $log->actions = $actions;
         $log->advisor = $request->advisor;
-        $log->result = $request->result;
         $log->length = $request->length;
         $log->participant = $request->participant;
         $log->save();       
@@ -57,10 +58,11 @@ class LogController extends Controller
             'student_id' => 'required',
         ]);
 
+        $actions= json_encode($request->actions);
+
         $log->student_id = $request->student_id;
-        $log->action = $request->action;
+        $log->actions = $actions;
         $log->advisor = $request->advisor;
-        $log->result = $request->result;
         $log->length = $request->length;
         $log->participant = $request->participant;
         $log->save(); 
